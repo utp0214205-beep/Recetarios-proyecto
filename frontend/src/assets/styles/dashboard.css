@@ -1,0 +1,143 @@
+.dashboard{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:30px;
+
+}
+
+
+
+.welcome-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+.welcome-card h1{
+
+    margin:0 0 10px 0;
+
+    color:#1d3557;
+
+}
+
+
+
+.welcome-card p{
+
+    color:#555;
+
+}
+
+
+
+
+.stats-container{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:25px;
+
+}
+
+
+
+.stat-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+}
+
+
+
+.stat-card h2{
+
+    font-size:40px;
+
+    margin:0;
+
+    color:#1d3557;
+
+}
+
+
+
+.stat-card p{
+
+    margin-top:10px;
+
+    color:#555;
+
+}
+
+
+
+
+.actions{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+}
+
+
+
+.actions-container{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+
+
+.actions button{
+
+    background:#1d3557;
+
+    color:white;
+
+    border:none;
+
+    padding:15px 25px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}
+
+
+
+.actions button:hover{
+
+    background:#457b9d;
+
+}

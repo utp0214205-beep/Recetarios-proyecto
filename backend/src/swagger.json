@@ -1,0 +1,902 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API de Recetarios",
+    "description": "API para la gestión de alumnos, recetarios y recetas gastronómicas.",
+    "version": "1.0.0"
+  },
+  "host": "laughing-space-parakeet-r457x5r4wxvw3jqj-3000.app.github.dev",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+
+    "/api/alumnos": {
+
+      "get": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Obtener todos los alumnos",
+        "description": "Devuelve una lista de todos los alumnos registrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de alumnos",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Alumno"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      }
+
+    },
+
+    "/api/alumnos/registro": {
+
+      "post": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Registrar un alumno",
+        "description": "Crea un nuevo alumno.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AlumnoRegistro"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Alumno registrado correctamente",
+            "schema": {
+              "$ref": "#/definitions/Alumno"
+            }
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },
+
+    "/api/alumnos/login": {
+
+      "post": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Iniciar sesión",
+        "description": "Permite iniciar sesión con correo y contraseña.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Login"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Inicio de sesión correcto",
+            "schema": {
+              "$ref": "#/definitions/LoginRespuesta"
+            }
+          },
+          "401": {
+            "description": "Credenciales incorrectas"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },
+
+    "/api/alumnos/perfil/{id}": {
+
+      "get": {
+        "tags": [
+          "Alumnos"
+        ],
+        "summary": "Obtener perfil",
+        "description": "Obtiene la información de un alumno mediante su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del alumno",
+            "required": true,
+            "type": "integer",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Perfil encontrado",
+            "schema": {
+              "$ref": "#/definitions/Alumno"
+            }
+          },
+          "404": {
+            "description": "Alumno no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },
+
+    "/api/recetarios": {
+
+      "post": {
+        "tags": [
+          "Recetarios"
+        ],
+        "summary": "Crear recetario",
+        "description": "Crea un nuevo recetario.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecetarioRegistro"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Recetario creado",
+            "schema": {
+              "$ref": "#/definitions/Recetario"
+            }
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      },
+
+      "get": {
+        "tags": [
+          "Recetarios"
+        ],
+        "summary": "Listar recetarios",
+        "description": "Obtiene todos los recetarios registrados.",
+        "responses": {
+          "200": {
+            "description": "Lista de recetarios",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Recetario"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },    
+    
+    "/api/recetarios/{id}": {
+
+      "get": {
+        "tags": [
+          "Recetarios"
+        ],
+        "summary": "Obtener un recetario",
+        "description": "Obtiene la información de un recetario por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID del recetario",
+            "required": true,
+            "type": "integer",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recetario encontrado",
+            "schema": {
+              "$ref": "#/definitions/Recetario"
+            }
+          },
+          "404": {
+            "description": "Recetario no encontrado"
+          },
+          "500": {
+            "description": "Error interno del servidor"
+          }
+        }
+      },
+
+      "put": {
+        "tags": [
+          "Recetarios"
+        ],
+        "summary": "Actualizar un recetario",
+        "description": "Actualiza el nombre y la descripción de un recetario.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del recetario",
+            "example": 1
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecetarioActualizar"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recetario actualizado",
+            "schema": {
+              "$ref": "#/definitions/Recetario"
+            }
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "404": {
+            "description": "Recetario no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      },
+
+      "delete": {
+        "tags": [
+          "Recetarios"
+        ],
+        "summary": "Eliminar un recetario",
+        "description": "Elimina un recetario por su ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del recetario",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recetario eliminado"
+          },
+          "404": {
+            "description": "Recetario no encontrado"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },
+
+    "/api/recetarios/{id_recetario}/recetas": {
+
+      "post": {
+        "tags": [
+          "Recetas"
+        ],
+        "summary": "Crear una receta",
+        "description": "Agrega una receta a un recetario.",
+        "parameters": [
+          {
+            "name": "id_recetario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del recetario",
+            "example": 1
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/RecetaRegistro"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Receta creada",
+            "schema": {
+              "$ref": "#/definitions/Receta"
+            }
+          },
+          "400": {
+            "description": "Datos inválidos"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      },
+
+      "get": {
+        "tags": [
+          "Recetas"
+        ],
+        "summary": "Listar recetas de un recetario",
+        "description": "Obtiene todas las recetas pertenecientes a un recetario.",
+        "parameters": [
+          {
+            "name": "id_recetario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "ID del recetario",
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista de recetas",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Receta"
+              }
+            }
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },
+
+    "/api/recetarios/{id_recetario}/recetas/{id_receta}": {
+
+      "get": {
+        "tags": [
+          "Recetas"
+        ],
+        "summary": "Obtener detalle de receta",
+        "description": "Obtiene la información completa de una receta.",
+        "parameters": [
+          {
+            "name": "id_recetario",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "example": 1
+          },
+          {
+            "name": "id_receta",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "example": 5
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Receta encontrada",
+            "schema": {
+              "$ref": "#/definitions/Receta"
+            }
+          },
+          "404": {
+            "description": "Receta no encontrada"
+          },
+          "500": {
+            "description": "Error interno"
+          }
+        }
+      }
+
+    },
+
+    "/api/recetas": {
+      "get": {
+        "tags": ["Recetas"],
+        "summary": "Obtener todas las recetas",
+        "description": "Devuelve todas las recetas registradas en el sistema.",
+        "parameters": [],
+        "responses": {
+          "200": { "description": "Lista de recetas" },
+          "500": { "description": "Error interno" }
+        }
+      }
+    }
+  
+
+  },
+
+  "definitions": {    "Alumno": {
+      "type": "object",
+      "properties": {
+        "id_alumno": {
+          "type": "integer",
+          "example": 1
+        },
+        "matricula": {
+          "type": "string",
+          "example": "UTP0214205"
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Alan"
+        },
+        "apellido_paterno": {
+          "type": "string",
+          "example": "Pérez"
+        },
+        
+        "apellido_materno": {
+          "type": "string",
+          "example": "García"
+        },
+
+        "correo": {
+          "type": "string",
+          "example": "alan@correo.com"
+        }
+      }
+    },
+
+    "AlumnoRegistro": {
+      "type": "object",
+      "required": [
+        "matricula",
+        "nombre",
+        "apellido_paterno",
+        "apellido_materno",
+        "correo",
+        "contrasena"
+      ],
+      "properties": {
+        "matricula": {
+          "type": "string",
+          "example": "UTP0214205"
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Alan"
+        },
+        "apellido_paterno": {
+          "type": "string",
+          "example": "Pérez"
+        },
+        
+        "apellido_materno": {
+          "type": "string",
+          "example": "García"
+        },
+        "correo": {
+          "type": "string",
+          "example": "alan@correo.com"
+        },
+        "contrasena": {
+          "type": "string",
+          "example": "MiPassword123"
+        }
+      }
+    },
+
+    "Login": {
+      "type": "object",
+      "required": [
+        "correo",
+        "contrasena"
+      ],
+      "properties": {
+        "correo": {
+          "type": "string",
+          "example": "alan@correo.com"
+        },
+        "contrasena": {
+          "type": "string",
+          "example": "MiPassword123"
+        }
+      }
+    },
+
+    "LoginRespuesta": {
+      "type": "object",
+      "properties": {
+        "mensaje": {
+          "type": "string",
+          "example": "Inicio de sesión exitoso"
+        },
+        "id_alumno": {
+          "type": "integer",
+          "example": 1
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Alan"
+        },
+        "correo": {
+          "type": "string",
+          "example": "alan@correo.com"
+        }
+      }
+    },
+
+    "Recetario": {
+      "type": "object",
+      "properties": {
+        "id_recetario": {
+          "type": "integer",
+          "example": 1
+        },
+        "id_alumno": {
+          "type": "integer",
+          "example": 1
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Recetario Cocina Mexicana"
+        },
+        "descripcion": {
+          "type": "string",
+          "example": "Recetario del cuatrimestre."
+        }
+      }
+    },
+
+    "RecetarioRegistro": {
+      "type": "object",
+      "required": [
+        "id_alumno",
+        "nombre"
+      ],
+      "properties": {
+        "id_alumno": {
+          "type": "integer",
+          "example": 1
+        },
+        "nombre": {
+          "type": "string",
+          "example": "Recetario Cocina Mexicana"
+        }
+      }
+    },
+
+    "RecetarioActualizar": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string",
+          "example": "Nuevo nombre del recetario"
+        },
+        "descripcion": {
+          "type": "string",
+          "example": "Nueva descripción del recetario."
+        }
+      }
+    },    "Receta": {
+      "type": "object",
+      "properties": {
+        "id_receta": {
+          "type": "integer",
+          "example": 1
+        },
+        "id_recetario": {
+          "type": "integer",
+          "example": 1
+        },
+        "nombre_platillo": {
+          "type": "string",
+          "example": "Chiles en Nogada"
+        },
+        "clasificacion": {
+          "type": "string",
+          "example": "Platillo Principal"
+        },
+        "asignatura": {
+          "type": "string",
+          "example": "Cocina Mexicana"
+        },
+        "numero_porciones": {
+          "type": "integer",
+          "example": 4
+        },
+        "tiempo_preparacion": {
+          "type": "integer",
+          "description": "Tiempo de preparación en minutos",
+          "example": 90
+        },
+        "temperatura_coccion": {
+          "type": "integer",
+          "description": "Tiempo de cocción en minutos",
+          "example": 45
+        },
+        "temperatura_servicio": {
+          "type": "string",
+          "example": "180 °C"
+        },
+        "ingredientes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "type": "string",
+                "example": "Chile poblano"
+              },
+              "cantidad": {
+                "type": "number",
+                "example": 2
+              },
+              "unidad": {
+                "type": "string",
+                "example": "pieza"
+              },
+              "costo_unitario": {
+                "type": "number",
+                "example": 15
+              },
+              "rendimiento": {
+                "type": "string",
+                "example": "100%"
+              },
+              "importe": {
+                "type": "number",
+                "example": 30
+              }
+            }
+          }
+        },
+        "procedimiento": {
+          "type": "object",
+          "properties": {
+            "mise_en_place": {
+              "type": "string",
+              "example": "Preparar ingredientes"
+            },
+            "instrucciones": {
+              "type": "string",
+              "example": "Cocer, mezclar y servir."
+            }
+          }
+        },
+        "equipo": {
+          "type": "object",
+          "properties": {
+            "utensilios": {
+              "type": "string",
+              "example": "Sartén, cuchillo"
+            },
+            "temperatura_coccion": {
+              "type": "number",
+              "example": 180
+            },
+            "temperatura_servicio": {
+              "type": "number",
+              "example": 70
+            },
+            "material_extra": {
+              "type": "string",
+              "example": "Tabla de madera"
+            },
+            "unidades_medicion": {
+              "type": "string",
+              "example": "°C"
+            }
+          }
+        },
+        "costo_total": {
+          "type": "number",
+          "format": "float",
+          "example": 325.75
+        },
+        "observaciones": {
+          "type": "string",
+          "example": "Servir frío con granada y perejil."
+        }
+      }
+    },
+
+    "RecetaRegistro": {
+      "type": "object",
+      "required": [
+        "nombre_platillo"
+      ],
+      "properties": {
+        "nombre_platillo": {
+          "type": "string",
+          "example": "Chiles en Nogada"
+        },
+        "clasificacion": {
+          "type": "string",
+          "example": "Platillo Principal"
+        },
+        "asignatura": {
+          "type": "string",
+          "example": "Cocina Mexicana"
+        },
+        "numero_porciones": {
+          "type": "integer",
+          "example": 4
+        },
+        "tiempo_preparacion": {
+          "type": "integer",
+          "example": 90
+        },
+        "temperatura_coccion": {
+          "type": "integer",
+          "example": 45
+        },
+        "temperatura_servicio": {
+          "type": "string",
+          "example": "180 °C"
+        },
+        "ingredientes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "nombre": {
+                "type": "string",
+                "example": "Chile poblano"
+              },
+              "cantidad": {
+                "type": "number",
+                "example": 2
+              },
+              "unidad": {
+                "type": "string",
+                "example": "pieza"
+              },
+              "costo_unitario": {
+                "type": "number",
+                "example": 15
+              },
+              "rendimiento": {
+                "type": "string",
+                "example": "100%"
+              },
+              "importe": {
+                "type": "number",
+                "example": 30
+              }
+            }
+          }
+        },
+        "procedimiento": {
+          "type": "object",
+          "properties": {
+            "mise_en_place": {
+              "type": "string",
+              "example": "Preparar ingredientes"
+            },
+            "instrucciones": {
+              "type": "string",
+              "example": "Cocer, mezclar y servir."
+            }
+          }
+        },
+        "equipo": {
+          "type": "object",
+          "properties": {
+            "utensilios": {
+              "type": "string",
+              "example": "Sartén, cuchillo"
+            },
+            "temperatura_coccion": {
+              "type": "number",
+              "example": 180
+            },
+            "temperatura_servicio": {
+              "type": "number",
+              "example": 70
+            },
+            "material_extra": {
+              "type": "string",
+              "example": "Tabla de madera"
+            },
+            "unidades_medicion": {
+              "type": "string",
+              "example": "°C"
+            }
+          }
+        },
+        "tecnica_culinaria": {
+          "type": "object",
+          "properties": {
+            "tipo_corte": {
+              "type": "string"
+            },
+            "metodo_coccion": {
+              "type": "string"
+            },
+            "tecnica_elaboracion": {
+              "type": "string"
+            }
+          }
+        },
+
+        "fotografias": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "imagen": {
+                "type": "string"
+              }
+            }
+          }
+        },
+
+        "informacion_complementaria": {
+          "type": "object",
+          "properties": {
+            "historia": {
+              "type": "string"
+            },
+            "conclusiones": {
+              "type": "string"
+            },
+            "buenas_practicas": {
+              "type": "string"
+            },
+            "referencias": {
+              "type": "string"
+            }
+          }
+        },
+        "costo_total": {
+          "type": "number",
+          "format": "float",
+          "example": 325.75
+        },
+        "observaciones": {
+          "type": "string",
+          "example": "Servir inmediatamente."
+        }
+      }
+    }  
+  }
+
+}
