@@ -1,32 +1,49 @@
 import api from "./api";
 
-export const obtenerRecetarios = async () => {
 
-    const response = await api.get("/recetarios");
+export const obtenerRecetarios = async (id_alumno) => {
+
+    const response = await api.get(
+        `/recetarios?id_alumno=${id_alumno}`
+    );
 
     return response.data;
 
 };
+
+
 
 export const crearRecetario = async (datos) => {
 
-    const response = await api.post("/recetarios", datos);
+    const response = await api.post(
+        "/recetarios",
+        datos
+    );
 
     return response.data;
 
 };
+
+
 
 export const actualizarRecetario = async (id, datos) => {
 
-    const response = await api.put(`/recetarios/${id}`, datos);
+    const response = await api.put(
+        `/recetarios/${id}`,
+        datos
+    );
 
     return response.data;
 
 };
 
+
+
 export const eliminarRecetario = async (id) => {
 
-    const response = await api.delete(`/recetarios/${id}`);
+    const response = await api.delete(
+        `/recetarios/${id}`
+    );
 
     return response.data;
 
