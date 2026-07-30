@@ -8,10 +8,13 @@ import FormIngredientes from "../components/receta/FormIngredientes";
 import FormProcedimiento from "../components/receta/FormProcedimiento";
 import FormTecnicaCulinaria from "../components/receta/FormTecnicaCulinaria";
 import FormEquipo from "../components/receta/FormEquipo";
+import FormInformacionComplementaria from "../components/receta/FormInformacionComplementaria";
+import FormFotografias from "../components/receta/FormFotografias";
 
 function NuevaReceta() {
 
     const { id } = useParams();
+
     const navigate = useNavigate();
 
     const [datosReceta, setDatosReceta] = useState({
@@ -125,6 +128,29 @@ function NuevaReceta() {
 
     };
 
+    const actualizarInformacion = (e) => {
+
+        const { name, value } = e.target;
+
+        setDatosReceta((prev) => ({
+            ...prev,
+            informacion_complementaria: {
+                ...prev.informacion_complementaria,
+                [name]: value
+            }
+        }));
+
+    };
+
+    const actualizarFotografias = (nuevasFotografias) => {
+
+        setDatosReceta((prev) => ({
+            ...prev,
+            fotografias: nuevasFotografias
+        }));
+
+    };
+
     const guardar = async (e) => {
 
         e.preventDefault();
@@ -182,6 +208,16 @@ function NuevaReceta() {
                 <FormEquipo
                     equipo={datosReceta.equipo}
                     onChange={actualizarEquipo}
+                />
+
+                <FormInformacionComplementaria
+                    informacion={datosReceta.informacion_complementaria}
+                    onChange={actualizarInformacion}
+                />
+
+                <FormFotografias
+                    fotografias={datosReceta.fotografias}
+                    setFotografias={actualizarFotografias}
                 />
 
                 <button type="submit">

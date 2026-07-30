@@ -94,7 +94,13 @@ function RecetarioDetalle() {
 
     };
 
+    const abrirReceta = (idReceta) => {
 
+        navigate(
+            `/recetarios/${id}/recetas/${idReceta}`
+        );
+
+    };
 
 
 
@@ -219,37 +225,26 @@ function RecetarioDetalle() {
 
 
                             <div
-
-                                key={
-                                    receta.id_receta
-                                }
-
+                                key={receta.id_receta}
                                 className="tarjeta-receta"
-
+                                onClick={() =>
+                                    navigate(
+                                        `/recetarios/${id}/recetas/${receta.id_receta}`
+                                    )
+                                }
                             >
-
-
 
                                 <h3>
 
-                                    {
-                                        receta.nombre_platillo
-                                    }
+                                    {receta.nombre_platillo}
 
                                 </h3>
 
-
-
                                 <p>
 
-                                    {
-                                        receta.clasificacion ||
-                                        "Sin clasificación"
-                                    }
+                                    {receta.clasificacion || "Sin clasificación"}
 
                                 </p>
-
-
 
                             </div>
 

@@ -10,6 +10,7 @@ import RecetarioDetalle from "./pages/RecetarioDetalle";
 import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import NuevaReceta from "./pages/NuevaReceta";
+import DetalleReceta from "./pages/DetalleReceta";
 
 function App() {
 
@@ -61,6 +62,11 @@ function App() {
                 <Route
                     path="/recetarios/:id/nueva-receta"
                     element={<NuevaReceta />}
+                />
+
+                <Route
+                    path="/recetarios/:idRecetario/recetas/:idReceta"
+                    element={<DetalleReceta />}
                 />
 
                 <Route
