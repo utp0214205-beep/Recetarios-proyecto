@@ -1,27 +1,28 @@
-// src/routes/receta.routes.js
-/*
-const express = require('express');
-const router = express.Router(); 
-const RecetaController = require('../controllers/receta.controller');
-
-// Esta ruta "/" combinada con el app.use('/api/recetas', ...) en app.js
-// se convierte en: GET /api/recetas
-router.get('/', RecetaController.getAll); 
-
-// Las demás rutas del módulo (si las tienes)
-router.post('/recetario/:id_recetario', RecetaController.crear);
-router.get('/recetario/:id_recetario', RecetaController.listarPorRecetario);
-router.get('/recetario/:id_recetario/detalle/:id_receta', RecetaController.obtenerDetalle);
-
-module.exports = router;
-*/
-const express = require('express');
+const express = require("express");
 
 const router = express.Router();
 
-const RecetaController = require('../controllers/receta.controller');
+const RecetaController = require("../controllers/receta.controller");
 
-// GET /api/recetas
-router.get('/', RecetaController.getAll);
+// Obtener todas las recetas (administración)
+router.get("/", RecetaController.getAll);
+
+// Obtener las recetas de un recetario
+router.get(
+    "/recetario/:id_recetario",
+    RecetaController.listarPorRecetario
+);
+
+// Crear una receta
+router.post(
+    "/recetario/:id_recetario",
+    RecetaController.crear
+);
+
+// Obtener una receta específica
+router.get(
+    "/recetario/:id_recetario/:id_receta",
+    RecetaController.obtenerDetalle
+);
 
 module.exports = router;
