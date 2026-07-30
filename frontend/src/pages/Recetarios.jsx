@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 import ListaRecetarios from "../components/recetario/ListaRecetarios";
@@ -6,7 +7,8 @@ import FormRecetario from "../components/recetario/FormRecetario";
 
 import {
     obtenerRecetarios,
-    crearRecetario
+    crearRecetario,
+    eliminarRecetario
 } from "../services/recetarioService";
 
 
@@ -14,11 +16,26 @@ function Recetarios() {
 
     const { alumno } = useAuth();
 
+    const navigate = useNavigate();
+
+
     const [recetarios, setRecetarios] = useState([]);
 
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
 
     const [cargando, setCargando] = useState(true);
+
+
+
+    useEffect(() => {
+
+        if (alumno) {
+
+            cargarRecetarios();
+
+        }
+
+    }, [alumno]);
 
 
 
@@ -40,6 +57,7 @@ function Recetarios() {
                 error
             );
 
+
         } finally {
 
             setCargando(false);
@@ -50,24 +68,11 @@ function Recetarios() {
 
 
 
-    useEffect(() => {
-
-        if (alumno) {
-
-            cargarRecetarios();
-
-        }
-
-    }, [alumno]);
-
-
-
-
     const guardarRecetario = async (datos) => {
 
         try {
 
-            const nuevo = await crearRecetario({
+            await crearRecetario({
 
                 ...datos,
 
@@ -76,15 +81,7 @@ function Recetarios() {
             });
 
 
-
-            setRecetarios([
-
-                ...recetarios,
-
-                nuevo.recetario
-
-            ]);
-
+            await cargarRecetarios();
 
 
             setMostrarFormulario(false);
@@ -104,19 +101,76 @@ function Recetarios() {
 
 
 
+    const abrirRecetario = (recetario) => {
+
+        navigate(
+            `/recetarios/${recetario.id_recetario}`
+        );
+
+    };
+
+
+
+    const editarRecetario = (recetario) => {
+
+        console.log(
+            "Editar recetario:",
+            recetario
+        );
+
+        // Aquí después abriremos
+        // el formulario con datos existentes
+
+    };
+
+
+
+    const borrarRecetario = async (id) => {
+
+        const confirmar = window.confirm(
+            "¿Deseas eliminar este recetario?"
+        );
+
+
+        if (!confirmar) return;
+
+
+
+        try {
+
+            await eliminarRecetario(id);
+
+
+            await cargarRecetarios();
+
+
+
+        } catch (error) {
+
+            console.error(
+                "Error eliminando recetario:",
+                error
+            );
+
+        }
+
+    };
+
+
 
     if (cargando) {
 
         return (
 
             <p>
+
                 Cargando recetarios...
+
             </p>
 
         );
 
     }
-
 
 
 
@@ -129,7 +183,9 @@ function Recetarios() {
 
 
                 <h1>
+
                     Mis Recetarios
+
                 </h1>
 
 
@@ -138,14 +194,15 @@ function Recetarios() {
 
                     className="btn-guardar"
 
-                    onClick={() => setMostrarFormulario(true)}
+                    onClick={() =>
+                        setMostrarFormulario(true)
+                    }
 
                 >
 
                     + Nuevo Recetario
 
                 </button>
-
 
 
             </div>
@@ -158,8 +215,13 @@ function Recetarios() {
 
                 recetarios={recetarios}
 
-            />
+                onAbrir={abrirRecetario}
 
+                onEditar={editarRecetario}
+
+                onEliminar={borrarRecetario}
+
+            />
 
 
 
@@ -173,15 +235,15 @@ function Recetarios() {
 
                         onGuardar={guardarRecetario}
 
-                        onCancelar={() => setMostrarFormulario(false)}
+                        onCancelar={() =>
+                            setMostrarFormulario(false)
+                        }
 
                     />
 
                 )
 
             }
-
-
 
 
 

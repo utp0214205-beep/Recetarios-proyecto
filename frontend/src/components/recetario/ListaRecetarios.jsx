@@ -1,25 +1,70 @@
-import CardRecetario from "./CardRecetario";
+import TarjetaRecetario from "./TarjetaRecetario";
 
-function ListaRecetarios({ recetarios = [] }) {
+
+function ListaRecetarios({
+
+    recetarios = [],
+
+    onEditar,
+
+    onEliminar,
+
+    onAbrir
+
+}) {
+
 
     if (recetarios.length === 0) {
+
         return (
-            <p>Aún no tienes recetarios creados.</p>
+
+            <p>
+
+                No tienes recetarios registrados.
+
+            </p>
+
         );
+
     }
 
+
+
     return (
+
         <div className="lista-recetarios">
 
-            {recetarios.map((recetario) => (
-                <CardRecetario
-                    key={recetario.id_recetario}
-                    recetario={recetario}
-                />
-            ))}
+
+            {
+
+                recetarios.map((recetario) => (
+
+                    <TarjetaRecetario
+
+                        key={
+                            recetario.id_recetario
+                        }
+
+                        recetario={recetario}
+
+                        onAbrir={onAbrir}
+
+                        onEditar={onEditar}
+
+                        onEliminar={onEliminar}
+
+                    />
+
+                ))
+
+            }
+
 
         </div>
+
     );
+
 }
+
 
 export default ListaRecetarios;

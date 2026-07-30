@@ -1,30 +1,22 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-import {
-    obtenerRecetarios,
-    crearRecetario
-} from "../services/recetarioService";
+import { obtenerRecetarios } from "../services/recetarioService";
 
-import FormRecetario from "../components/recetario/FormRecetario";
 import ListaRecetarios from "../components/recetario/ListaRecetarios";
 
 import "../assets/styles/dashboard.css";
-
 
 function Dashboard() {
 
     const { alumno } = useAuth();
 
+    const navigate = useNavigate();
 
     const [misRecetarios, setMisRecetarios] = useState([]);
 
     const [cargando, setCargando] = useState(true);
-
-    const [mostrarFormulario, setMostrarFormulario] = useState(false);
-
-
-
 
     useEffect(() => {
 
@@ -38,86 +30,38 @@ function Dashboard() {
 
 
 
-
-
     const cargarRecetarios = async () => {
 
         try {
-
 
             const data = await obtenerRecetarios(
                 alumno.id_alumno
             );
 
-
             setMisRecetarios(data);
 
-
-
         } catch (error) {
-
 
             console.error(
                 "Error cargando recetarios:",
                 error
             );
 
-
         } finally {
-
 
             setCargando(false);
 
-
         }
 
     };
 
 
 
+    const abrirRecetario = (recetario) => {
 
-
-
-
-    const guardarRecetario = async ({ nombre }) => {
-
-        try {
-
-
-            await crearRecetario({
-
-                id_alumno: alumno.id_alumno,
-
-                nombre
-
-            });
-
-
-
-            await cargarRecetarios();
-
-
-
-            setMostrarFormulario(false);
-
-
-
-        } catch (error) {
-
-
-            console.error(
-                "Error al crear el recetario:",
-                error
-            );
-
-
-        }
+        navigate(`/recetarios/${recetario.id_recetario}`);
 
     };
-
-
-
-
 
 
 
@@ -125,10 +69,7 @@ function Dashboard() {
 
         <div className="dashboard">
 
-
-
             <section className="welcome-card">
-
 
                 <h1>
 
@@ -136,25 +77,19 @@ function Dashboard() {
 
                 </h1>
 
-
                 <p>
 
                     Gestiona tus recetarios digitales de forma rápida y organizada.
 
                 </p>
 
-
             </section>
-
-
 
 
 
             <section className="stats-container">
 
-
                 <div className="stat-card">
-
 
                     <h2>
 
@@ -166,29 +101,23 @@ function Dashboard() {
 
                     </h2>
 
-
                     <p>
 
                         Recetarios
 
                     </p>
 
-
                 </div>
 
 
 
-
-
                 <div className="stat-card">
-
 
                     <h2>
 
                         0
 
                     </h2>
-
 
                     <p>
 
@@ -196,15 +125,11 @@ function Dashboard() {
 
                     </p>
 
-
                 </div>
 
 
 
-
-
                 <div className="stat-card">
-
 
                     <h2>
 
@@ -212,29 +137,19 @@ function Dashboard() {
 
                     </h2>
 
-
                     <p>
 
                         Pendientes
 
                     </p>
 
-
                 </div>
-
-
 
             </section>
 
 
 
-
-
-
-
-
             <section className="actions">
-
 
                 <h2>
 
@@ -242,22 +157,15 @@ function Dashboard() {
 
                 </h2>
 
-
-
                 <div className="actions-container">
 
-
-
                     <button
-
-                        onClick={() => setMostrarFormulario(true)}
-
+                        onClick={() => navigate("/recetarios")}
                     >
 
-                        + Nuevo recetario
+                        Administrar recetarios
 
                     </button>
-
 
 
 
@@ -269,79 +177,52 @@ function Dashboard() {
 
 
 
-
-                    <button>
+                    <button
+                        onClick={() => navigate("/perfil")}
+                    >
 
                         Editar perfil
 
                     </button>
 
-
-
                 </div>
 
-
             </section>
-
-
-
-
-
-
-
-
-            {
-                mostrarFormulario && (
-
-                    <FormRecetario
-
-                        onGuardar={guardarRecetario}
-
-                        onCancelar={() => setMostrarFormulario(false)}
-
-                    />
-
-                )
-            }
-
-
-
-
-
 
 
 
             <section className="mis-recetarios">
 
+                <div className="recetarios-header">
 
-                <h2>
+                    <h2>
 
-                    Mis Recetarios
+                        Últimos recetarios
 
-                </h2>
+                    </h2>
 
+                    <button
+                        className="btn-ver-todos"
+                        onClick={() => navigate("/recetarios")}
+                    >
 
+                        Ver todos
 
+                    </button>
+
+                </div>
 
                 <ListaRecetarios
-
-                    recetarios={misRecetarios}
-
+                    recetarios={misRecetarios.slice(0, 3)}
+                    onAbrir={abrirRecetario}
                 />
 
-
-
             </section>
-
-
-
-
 
         </div>
 
     );
 
 }
-
 
 export default Dashboard;
