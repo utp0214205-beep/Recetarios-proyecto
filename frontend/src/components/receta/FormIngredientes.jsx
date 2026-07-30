@@ -1,338 +1,206 @@
 import { useState } from "react";
 
-
 function FormIngredientes({
     ingredientes,
     setIngredientes
 }) {
 
-
     const [nuevoIngrediente, setNuevoIngrediente] = useState({
-
         nombre: "",
-
         cantidad: "",
-
         unidad: "",
-
         costo_unitario: "",
-
-        rendimiento: "",
-
-        importe: ""
-
+        rendimiento: ""
     });
-
-
-
-
 
     const cambiarCampo = (e) => {
 
-
         const { name, value } = e.target;
 
-
-        setNuevoIngrediente({
-
-            ...nuevoIngrediente,
-
+        setNuevoIngrediente((prev) => ({
+            ...prev,
             [name]: value
-
-        });
-
+        }));
 
     };
-
-
-
-
-
 
     const agregarIngrediente = () => {
 
-
-        if (!nuevoIngrediente.nombre.trim()) {
-
+        if (
+            !nuevoIngrediente.nombre.trim() ||
+            !nuevoIngrediente.cantidad ||
+            !nuevoIngrediente.unidad
+        ) {
+            alert("Completa al menos el nombre, cantidad y unidad.");
             return;
-
         }
 
+        const cantidad = Number(nuevoIngrediente.cantidad) || 0;
+        const costo = Number(nuevoIngrediente.costo_unitario) || 0;
 
+        const ingrediente = {
+            ...nuevoIngrediente,
+            importe: (cantidad * costo).toFixed(2)
+        };
 
         setIngredientes([
-
             ...ingredientes,
-
-            nuevoIngrediente
-
+            ingrediente
         ]);
 
-
-
         setNuevoIngrediente({
-
             nombre: "",
-
             cantidad: "",
-
             unidad: "",
-
             costo_unitario: "",
-
-            rendimiento: "",
-
-            importe: ""
-
+            rendimiento: ""
         });
 
-
     };
-
-
-
-
-
 
     const eliminarIngrediente = (index) => {
 
-
         const nuevos = ingredientes.filter(
-
             (_, i) => i !== index
-
         );
-
 
         setIngredientes(nuevos);
 
-
     };
-
-
-
-
-
 
     return (
 
         <section className="form-seccion">
 
-
-            <h2>
-
-                Ingredientes
-
-            </h2>
-
-
-
-
+            <h2>Ingredientes</h2>
 
             <div className="ingrediente-form">
 
-
                 <input
-
                     type="text"
-
                     name="nombre"
-
                     placeholder="Ingrediente"
-
-                    value={
-                        nuevoIngrediente.nombre
-                    }
-
+                    value={nuevoIngrediente.nombre}
                     onChange={cambiarCampo}
-
                 />
 
-
-
                 <input
-
-                    type="text"
-
+                    type="number"
                     name="cantidad"
-
                     placeholder="Cantidad"
-
-                    value={
-                        nuevoIngrediente.cantidad
-                    }
-
+                    value={nuevoIngrediente.cantidad}
                     onChange={cambiarCampo}
-
                 />
 
-
-
                 <input
-
                     type="text"
-
                     name="unidad"
-
                     placeholder="Unidad"
-
-                    value={
-                        nuevoIngrediente.unidad
-                    }
-
+                    value={nuevoIngrediente.unidad}
                     onChange={cambiarCampo}
-
                 />
 
-
-
                 <input
-
                     type="number"
-
+                    step="0.01"
                     name="costo_unitario"
-
-                    placeholder="Costo"
-
-                    value={
-                        nuevoIngrediente.costo_unitario
-                    }
-
+                    placeholder="Costo unitario"
+                    value={nuevoIngrediente.costo_unitario}
                     onChange={cambiarCampo}
-
                 />
 
-
-
                 <input
-
                     type="text"
-
                     name="rendimiento"
-
-                    placeholder="Rendimiento %"
-
-                    value={
-                        nuevoIngrediente.rendimiento
-                    }
-
+                    placeholder="Rendimiento (%)"
+                    value={nuevoIngrediente.rendimiento}
                     onChange={cambiarCampo}
-
                 />
-
-
-
-                <input
-
-                    type="number"
-
-                    name="importe"
-
-                    placeholder="Importe"
-
-                    value={
-                        nuevoIngrediente.importe
-                    }
-
-                    onChange={cambiarCampo}
-
-                />
-
-
-
-
 
                 <button
-
                     type="button"
-
                     onClick={agregarIngrediente}
-
                 >
-
                     + Agregar
-
                 </button>
 
-
-
             </div>
 
+            {
+                ingredientes.length > 0 && (
 
+                    <table className="tabla-ingredientes">
 
+                        <thead>
 
+                            <tr>
 
+                                <th>Ingrediente</th>
 
+                                <th>Cantidad</th>
 
+                                <th>Unidad</th>
 
-            <div className="lista-ingredientes">
+                                <th>Costo</th>
 
+                                <th>Rendimiento</th>
 
-                {
+                                <th>Importe</th>
 
-                    ingredientes.map((ingrediente, index) => (
+                                <th></th>
 
+                            </tr>
 
-                        <div
+                        </thead>
 
-                            key={index}
+                        <tbody>
 
-                            className="ingrediente-item"
+                            {
+                                ingredientes.map((ingrediente, index) => (
 
-                        >
+                                    <tr key={index}>
 
+                                        <td>{ingrediente.nombre}</td>
 
-                            <span>
+                                        <td>{ingrediente.cantidad}</td>
 
-                                {ingrediente.nombre}
+                                        <td>{ingrediente.unidad}</td>
 
-                                {" - "}
+                                        <td>${ingrediente.costo_unitario}</td>
 
-                                {ingrediente.cantidad}
+                                        <td>{ingrediente.rendimiento}</td>
 
-                                {" "}
+                                        <td>${ingrediente.importe}</td>
 
-                                {ingrediente.unidad}
+                                        <td>
 
-                            </span>
+                                            <button
+                                                type="button"
+                                                onClick={() =>
+                                                    eliminarIngrediente(index)
+                                                }
+                                            >
+                                                Eliminar
+                                            </button>
 
+                                        </td>
 
+                                    </tr>
 
+                                ))
+                            }
 
-                            <button
+                        </tbody>
 
-                                type="button"
+                    </table>
 
-                                onClick={() =>
-                                    eliminarIngrediente(index)
-                                }
-
-                            >
-
-                                Eliminar
-
-                            </button>
-
-
-
-                        </div>
-
-
-                    ))
-
-                }
-
-
-
-            </div>
-
-
+                )
+            }
 
         </section>
 
     );
 
 }
-
 
 export default FormIngredientes;
