@@ -2,13 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { obtenerDetalleReceta } from "../services/recetaService";
-import "../assets/styles/detalleReceta.css";
 
-import DetalleCabecera from "../components/receta/detalle/DetalleCabecera";
-import DetalleDatosGenerales from "../components/receta/detalle/DetalleDatosGenerales";
-import DetalleIngredientes from "../components/receta/detalle/DetalleIngredientes";
-import FichaReceta from "../components/receta/ficha/FichaReceta";
+import "../assets/styles/detalleReceta.css";
 import "../assets/styles/fichaReceta.css";
+
+import FichaReceta from "../components/receta/ficha/FichaReceta";
 
 function DetalleReceta() {
 
@@ -67,12 +65,47 @@ function DetalleReceta() {
 
             <div className="detalle-header">
 
-                <button
-                    className="btn-regresar"
-                    onClick={() => navigate(-1)}
-                >
-                    ← Regresar
-                </button>
+                <div className="detalle-titulo">
+
+                    <h1>
+
+                        {receta.nombre_platillo}
+
+                    </h1>
+
+                    <p>
+
+                        {receta.clasificacion}
+
+                    </p>
+
+                </div>
+
+                <div className="detalle-acciones">
+
+                    <button
+                        className="btn-editar"
+                        onClick={() =>
+                            navigate(
+                                `/recetarios/${idRecetario}/recetas/${idReceta}/editar`
+                            )
+                        }
+                    >
+
+                        ✏ Editar receta
+
+                    </button>
+
+                    <button
+                        className="btn-regresar"
+                        onClick={() => navigate(-1)}
+                    >
+
+                        ← Regresar
+
+                    </button>
+
+                </div>
 
             </div>
 
@@ -83,6 +116,7 @@ function DetalleReceta() {
         </div>
 
     );
-    }
+
+}
 
 export default DetalleReceta;

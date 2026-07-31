@@ -27,9 +27,17 @@ function TarjetaRecetario({
 
                     <span className="fecha-recetario">
 
-                        {recetario.fecha_creacion
-                            ? new Date(recetario.fecha_creacion).toLocaleDateString()
-                            : "Fecha no disponible"}
+                        {
+
+                            recetario.fecha_creacion
+
+                                ? new Date(
+                                    recetario.fecha_creacion
+                                ).toLocaleDateString()
+
+                                : "Fecha no disponible"
+
+                        }
 
                     </span>
 
@@ -41,8 +49,19 @@ function TarjetaRecetario({
 
                 <p>
 
-                    {recetario.descripcion ||
-                        "Recetario gastronómico."}
+                    Creado el{" "}
+
+                    {
+
+                        recetario.fecha_creacion
+
+                            ? new Date(
+                                recetario.fecha_creacion
+                            ).toLocaleDateString()
+
+                            : "Sin fecha"
+
+                    }
 
                 </p>
 
@@ -50,34 +69,60 @@ function TarjetaRecetario({
 
             <div className="tarjeta-footer">
 
-                <button
-                    className="btn-abrir"
-                    onClick={() => onAbrir(recetario)}
-                >
+                {
 
-                    👁 Abrir
+                    onAbrir && (
 
-                </button>
+                        <button
+                            className="btn-abrir"
+                            onClick={() => onAbrir(recetario)}
+                        >
 
-                <button
-                    className="btn-editar"
-                    onClick={() => onEditar(recetario)}
-                >
+                            👁 Abrir
 
-                    ✏ Editar
+                        </button>
 
-                </button>
+                    )
 
-                <button
-                    className="btn-eliminar"
-                    onClick={() =>
-                        onEliminar(recetario.id_recetario)
-                    }
-                >
+                }
 
-                    🗑 Eliminar
+                {
 
-                </button>
+                    onEditar && (
+
+                        <button
+                            className="btn-editar"
+                            onClick={() => onEditar(recetario)}
+                        >
+
+                            ✏ Editar nombre
+
+                        </button>
+
+                    )
+
+                }
+
+                {
+
+                    onEliminar && (
+
+                        <button
+                            className="btn-eliminar"
+                            onClick={() =>
+                                onEliminar(
+                                    recetario.id_recetario
+                                )
+                            }
+                        >
+
+                            🗑 Eliminar
+
+                        </button>
+
+                    )
+
+                }
 
             </div>
 

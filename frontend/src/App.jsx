@@ -73,6 +73,11 @@ function App() {
                     path="/perfil"
                     element={<Perfil />}
                 />
+                
+                <Route
+                    path="/recetarios/:idRecetario/recetas/:idReceta/editar"
+                    element={<NuevaReceta />}
+                />
 
             </Route>
 

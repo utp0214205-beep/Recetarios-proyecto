@@ -1,7 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { crearReceta } from "../services/recetaService";
+import {
+    crearReceta,
+    obtenerDetalleReceta,
+    actualizarReceta
+} from "../services/recetaService";
 
 import FormDatosGenerales from "../components/receta/FormDatosGenerales";
 import FormIngredientes from "../components/receta/FormIngredientes";
@@ -13,9 +17,13 @@ import FormFotografias from "../components/receta/FormFotografias";
 
 function NuevaReceta() {
 
-    const { id } = useParams();
+    const { id, idReceta } = useParams();
 
     const navigate = useNavigate();
+
+    const editando = Boolean(idReceta);
+
+    const [cargando, setCargando] = useState(editando);
 
     const [datosReceta, setDatosReceta] = useState({
 
@@ -66,6 +74,78 @@ function NuevaReceta() {
 
     });
 
+    useEffect(() => {
+
+        if (editando) {
+            cargarReceta();
+        }
+
+    }, []);
+
+    const cargarReceta = async () => {
+
+        try {
+
+            const receta = await obtenerDetalleReceta(
+                id,
+                idReceta
+            );
+
+            setDatosReceta({
+
+                ...receta,
+
+                ingredientes: receta.ingredientes || [],
+
+                procedimiento:
+                    receta.procedimiento || {
+                        mise_en_place: "",
+                        instrucciones: ""
+                    },
+
+                tecnica_culinaria:
+                    receta.tecnica_culinaria || {
+                        tipo_corte: "",
+                        metodo_coccion: "",
+                        tecnica_elaboracion: ""
+                    },
+
+                equipo:
+                    receta.equipo || {
+                        utensilios: "",
+                        temperatura_coccion: "",
+                        temperatura_servicio: "",
+                        material_extra: "",
+                        unidades_medicion: ""
+                    },
+
+                fotografias:
+                    receta.fotografias || [],
+
+                informacion_complementaria:
+                    receta.informacion_complementaria || {
+                        historia: "",
+                        conclusiones: "",
+                        buenas_practicas: "",
+                        referencias: ""
+                    }
+
+            });
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("No fue posible cargar la receta.");
+
+        } finally {
+
+            setCargando(false);
+
+        }
+
+    };
+
     const manejarCambio = (e) => {
 
         const { name, value } = e.target;
@@ -77,11 +157,11 @@ function NuevaReceta() {
 
     };
 
-    const actualizarIngredientes = (nuevosIngredientes) => {
+    const actualizarIngredientes = (ingredientes) => {
 
         setDatosReceta((prev) => ({
             ...prev,
-            ingredientes: nuevosIngredientes
+            ingredientes
         }));
 
     };
@@ -142,11 +222,11 @@ function NuevaReceta() {
 
     };
 
-    const actualizarFotografias = (nuevasFotografias) => {
+    const actualizarFotografias = (fotografias) => {
 
         setDatosReceta((prev) => ({
             ...prev,
-            fotografias: nuevasFotografias
+            fotografias
         }));
 
     };
@@ -157,27 +237,52 @@ function NuevaReceta() {
 
         try {
 
-            await crearReceta(id, datosReceta);
+            if (editando) {
 
-            alert("Receta creada correctamente");
+                await actualizarReceta(
+                    id,
+                    idReceta,
+                    datosReceta
+                );
+
+                alert("Receta actualizada correctamente.");
+
+            } else {
+
+                await crearReceta(
+                    id,
+                    datosReceta
+                );
+
+                alert("Receta creada correctamente.");
+
+            }
 
             navigate(`/recetarios/${id}`);
 
         } catch (error) {
 
-            console.error("Error creando receta:", error);
+            console.error(error);
 
-            alert("Error al crear la receta");
+            alert("Ocurrió un error.");
 
         }
 
     };
 
+    if (cargando) {
+
+        return <h2>Cargando receta...</h2>;
+
+    }
+
     return (
 
         <div className="nueva-receta">
 
-            <h1>Nueva receta</h1>
+            <h1>
+                {editando ? "Editar receta" : "Nueva receta"}
+            </h1>
 
             <p>
                 Completa la información de la receta.
@@ -221,7 +326,11 @@ function NuevaReceta() {
                 />
 
                 <button type="submit">
-                    Guardar receta
+
+                    {editando
+                        ? "Guardar cambios"
+                        : "Guardar receta"}
+
                 </button>
 
             </form>

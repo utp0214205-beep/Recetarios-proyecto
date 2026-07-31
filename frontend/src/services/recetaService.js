@@ -36,3 +36,18 @@ export const crearReceta = async (
     return response.data;
 
 };
+
+export const actualizarReceta = async (
+    idRecetario,
+    idReceta,
+    datos
+) => {
+
+    const response = await api.put(
+        `/recetarios/${idRecetario}/recetas/${idReceta}`,
+        datos
+    );
+
+    return response.data;
+
+};

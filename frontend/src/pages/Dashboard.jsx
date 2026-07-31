@@ -28,8 +28,6 @@ function Dashboard() {
 
     }, [alumno]);
 
-
-
     const cargarRecetarios = async () => {
 
         try {
@@ -55,15 +53,13 @@ function Dashboard() {
 
     };
 
-
-
     const abrirRecetario = (recetario) => {
 
-        navigate(`/recetarios/${recetario.id_recetario}`);
+        navigate(
+            `/recetarios/${recetario.id_recetario}`
+        );
 
     };
-
-
 
     return (
 
@@ -73,19 +69,17 @@ function Dashboard() {
 
                 <h1>
 
-                    Bienvenido {alumno?.nombre}
+                    Bienvenido, {alumno?.nombre}
 
                 </h1>
 
                 <p>
 
-                    Gestiona tus recetarios digitales de forma rápida y organizada.
+                    Bienvenido a <strong>MISE EN TRACK</strong>, tu plataforma para administrar recetarios digitales, organizar tus prácticas y generar fichas técnicas profesionales.
 
                 </p>
 
             </section>
-
-
 
             <section className="stats-container">
 
@@ -94,9 +88,13 @@ function Dashboard() {
                     <h2>
 
                         {
+
                             cargando
+
                                 ? "..."
+
                                 : misRecetarios.length
+
                         }
 
                     </h2>
@@ -108,8 +106,6 @@ function Dashboard() {
                     </p>
 
                 </div>
-
-
 
                 <div className="stat-card">
 
@@ -127,8 +123,6 @@ function Dashboard() {
 
                 </div>
 
-
-
                 <div className="stat-card">
 
                     <h2>
@@ -139,15 +133,13 @@ function Dashboard() {
 
                     <p>
 
-                        Pendientes
+                        PDF generados
 
                     </p>
 
                 </div>
 
             </section>
-
-
 
             <section className="actions">
 
@@ -167,29 +159,17 @@ function Dashboard() {
 
                     </button>
 
-
-
-                    <button>
-
-                        Ver recetas
-
-                    </button>
-
-
-
                     <button
                         onClick={() => navigate("/perfil")}
                     >
 
-                        Editar perfil
+                        Mi perfil
 
                     </button>
 
                 </div>
 
             </section>
-
-
 
             <section className="mis-recetarios">
 
