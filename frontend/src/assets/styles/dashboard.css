@@ -453,38 +453,3 @@
     margin:0;
 
 }
-.modal-recetario textarea{
-
-    width:100%;
-
-    padding:12px;
-
-    margin-top:8px;
-
-    margin-bottom:20px;
-
-    border:1px solid #d1d5db;
-
-    border-radius:10px;
-
-    resize:vertical;
-
-    min-height:110px;
-
-    font-family:inherit;
-
-    font-size:15px;
-
-    box-sizing:border-box;
-
-}
-
-.modal-recetario textarea:focus{
-
-    outline:none;
-
-    border-color:#1d3557;
-
-    box-shadow:0 0 0 3px rgba(29,53,87,.10);
-
-}

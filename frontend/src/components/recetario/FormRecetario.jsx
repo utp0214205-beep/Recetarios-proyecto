@@ -16,11 +16,7 @@ function FormRecetario({
 
     );
 
-    const [descripcion, setDescripcion] = useState(
-
-        recetario?.descripcion || ""
-
-    );
+    
 
     const enviar = (e) => {
 
@@ -35,16 +31,12 @@ function FormRecetario({
         }
 
         onGuardar({
-
-            nombre: nombre.trim(),
-
-            descripcion: descripcion.trim()
-
+            nombre: nombre.trim()
         });
 
         setNombre("");
 
-        setDescripcion("");
+        
 
     };
 
@@ -85,19 +77,7 @@ function FormRecetario({
                         autoFocus
                     />
 
-                    <label htmlFor="descripcion">
-
-                        Descripción
-
-                    </label>
-
-                    <textarea
-                        id="descripcion"
-                        rows="4"
-                        placeholder="Describe el contenido de este recetario..."
-                        value={descripcion}
-                        onChange={(e) => setDescripcion(e.target.value)}
-                    />
+                    
 
                     <div className="modal-buttons">
 
