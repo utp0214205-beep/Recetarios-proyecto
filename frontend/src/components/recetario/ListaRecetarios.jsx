@@ -14,15 +14,31 @@ function ListaRecetarios({
 }) {
 
 
-    if (recetarios.length === 0) {
+    if(recetarios.length===0){
 
-        return (
+        return(
 
-            <p>
+            <div className="sin-recetarios">
 
-                No tienes recetarios registrados.
+                <h2>
 
-            </p>
+                    📚
+
+                </h2>
+
+                <p>
+
+                    Aún no has creado ningún recetario.
+
+                </p>
+
+                <span>
+
+                    Presiona "Nuevo Recetario" para comenzar.
+
+                </span>
+
+            </div>
 
         );
 

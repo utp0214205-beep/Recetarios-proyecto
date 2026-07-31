@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 
 import { login } from "../../services/alumno.service";
 import { AuthContext } from "../../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -71,37 +72,75 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
 
-      <div>
+  <form
+  className="login-form"
+  onSubmit={handleSubmit}
+  >
 
-        <label>Correo electrónico</label>
+  <div>
 
-        <input
-          type="email"
-          value={correo}
-          onChange={(e) => setCorreo(e.target.value)}
-        />
+  <label>
 
-      </div>
+  Correo electrónico
 
-      <div>
+  </label>
 
-        <label>Contraseña</label>
+  <input
+  type="email"
+  value={correo}
+  onChange={(e)=>setCorreo(e.target.value)}
+  placeholder="correo@utp.edu.mx"
+  />
 
-        <input
-          type="password"
-          value={contrasena}
-          onChange={(e) => setContrasena(e.target.value)}
-        />
+  </div>
 
-      </div>
+  <div>
 
-      <button type="submit" disabled={cargando}>
-        {cargando ? "Ingresando..." : "Iniciar sesión"}
-      </button>
+  <label>
 
-    </form>
+  Contraseña
+
+  </label>
+
+  <input
+  type="password"
+  value={contrasena}
+  onChange={(e)=>setContrasena(e.target.value)}
+  placeholder="********"
+  />
+
+  </div>
+
+  <button
+      type="submit"
+      disabled={cargando}
+  >
+
+      {cargando ? "Ingresando..." : "Iniciar sesión"}
+
+  </button>
+
+  <hr className="login-divider"/>
+
+  <div className="registro-link">
+
+      <span>
+
+          ¿Aún no tienes una cuenta?
+
+      </span>
+
+      <Link to="/registro">
+
+          Crear cuenta
+
+      </Link>
+
+  </div>
+
+  </form>
+
   );
 }
 

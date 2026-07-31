@@ -1,0 +1,198 @@
+.ficha-receta-completa{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:40px;
+
+}
+.ficha-pagina{
+
+    width:100%;
+
+    max-width:900px;
+
+    background:white;
+
+    border:1px solid #000;
+
+    padding:25px;
+
+    box-sizing:border-box;
+
+}
+.ficha-header{
+
+    border-bottom:2px solid #000;
+
+    padding-bottom:15px;
+
+    margin-bottom:20px;
+
+}
+
+.ficha-header h2{
+
+    margin:0;
+
+    color:#444;
+
+    font-size:18px;
+
+}
+
+.ficha-header h1{
+
+    margin-top:8px;
+
+    color:#d9822b;
+
+    font-size:32px;
+
+}
+.tabla-datos{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-bottom:25px;
+
+}
+
+.tabla-datos th{
+
+    background:#dfeec6;
+
+    width:20%;
+
+}
+
+.tabla-datos td{
+
+    width:30%;
+
+}
+
+.tabla-datos th,
+.tabla-datos td{
+
+    border:1px solid black;
+
+    padding:8px;
+
+    text-align:left;
+
+}
+.tabla-ingredientes{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.tabla-ingredientes th{
+
+    background:#dfeec6;
+
+}
+
+.tabla-ingredientes th,
+.tabla-ingredientes td{
+
+    border:1px solid black;
+
+    padding:7px;
+
+    font-size:14px;
+
+}
+
+.pie-pagina1{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:20px;
+
+    margin-top:25px;
+
+}
+
+.pie-pagina1 div{
+
+    border:1px solid #000;
+
+    padding:12px;
+
+}
+
+.procedimiento-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:25px;
+
+}
+.montaje img{
+
+    width:100%;
+
+    border:1px solid #000;
+
+    object-fit:cover;
+
+}
+
+.tabla-tecnica,
+.tabla-equipo{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.tabla-tecnica th,
+.tabla-equipo th{
+
+    background:#dfeec6;
+
+}
+
+.tabla-tecnica th,
+.tabla-tecnica td,
+.tabla-equipo th,
+.tabla-equipo td{
+
+    border:1px solid black;
+
+    padding:8px;
+
+}
+.informacion{
+
+    margin-top:30px;
+
+}
+
+.informacion h3{
+
+    color:#1d3557;
+
+    margin-bottom:8px;
+
+}

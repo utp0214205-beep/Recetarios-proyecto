@@ -7,114 +7,84 @@ function TarjetaRecetario({
 
     return (
 
-        <div className="tarjeta-recetario">
+        <article className="tarjeta-recetario">
 
+            <div className="tarjeta-superior">
 
-            <div className="tarjeta-info">
+                <div className="icono-recetario">
 
-                <h3>
+                    📚
 
-                    {recetario.nombre}
+                </div>
 
-                </h3>
+                <div>
 
+                    <h3>
 
-                {
-                    recetario.descripcion && (
+                        {recetario.nombre}
 
-                        <p>
+                    </h3>
 
-                            {recetario.descripcion}
+                    <span className="fecha-recetario">
 
-                        </p>
+                        {recetario.fecha_creacion
+                            ? new Date(recetario.fecha_creacion).toLocaleDateString()
+                            : "Fecha no disponible"}
 
-                    )
-                }
+                    </span>
 
-            </div>
-
-
-
-
-
-            <div className="tarjeta-acciones">
-
-
-                {
-                    onAbrir && (
-
-                        <button
-
-                            onClick={() =>
-                                onAbrir(recetario)
-                            }
-
-                        >
-
-                            Abrir
-
-                        </button>
-
-                    )
-                }
-
-
-
-
-
-                {
-                    onEditar && (
-
-                        <button
-
-                            onClick={() =>
-                                onEditar(recetario)
-                            }
-
-                        >
-
-                            Editar
-
-                        </button>
-
-                    )
-                }
-
-
-
-
-
-
-                {
-                    onEliminar && (
-
-                        <button
-
-                            onClick={() =>
-                                onEliminar(
-                                    recetario.id_recetario
-                                )
-                            }
-
-                        >
-
-                            Eliminar
-
-                        </button>
-
-                    )
-                }
-
-
+                </div>
 
             </div>
 
+            <div className="tarjeta-centro">
 
-        </div>
+                <p>
+
+                    {recetario.descripcion ||
+                        "Recetario gastronómico."}
+
+                </p>
+
+            </div>
+
+            <div className="tarjeta-footer">
+
+                <button
+                    className="btn-abrir"
+                    onClick={() => onAbrir(recetario)}
+                >
+
+                    👁 Abrir
+
+                </button>
+
+                <button
+                    className="btn-editar"
+                    onClick={() => onEditar(recetario)}
+                >
+
+                    ✏ Editar
+
+                </button>
+
+                <button
+                    className="btn-eliminar"
+                    onClick={() =>
+                        onEliminar(recetario.id_recetario)
+                    }
+                >
+
+                    🗑 Eliminar
+
+                </button>
+
+            </div>
+
+        </article>
 
     );
 
 }
-
 
 export default TarjetaRecetario;

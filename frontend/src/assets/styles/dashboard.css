@@ -377,3 +377,114 @@
     }
 
 }
+.tarjeta-superior{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:center;
+
+}
+.icono-recetario{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:16px;
+
+    background:#1d3557;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:28px;
+
+}
+.fecha-recetario{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+.tarjeta-centro{
+
+    margin:22px 0;
+
+    color:#555;
+
+    line-height:1.6;
+
+}
+.tarjeta-footer{
+
+    display:flex;
+
+    gap:10px;
+
+}
+.tarjeta-footer button{
+
+    flex:1;
+
+}
+.sin-recetarios{
+
+    text-align:center;
+
+    padding:70px;
+
+    background:white;
+
+    border-radius:18px;
+
+}
+.sin-recetarios h2{
+
+    font-size:70px;
+
+    margin:0;
+
+}
+.modal-recetario textarea{
+
+    width:100%;
+
+    padding:12px;
+
+    margin-top:8px;
+
+    margin-bottom:20px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:10px;
+
+    resize:vertical;
+
+    min-height:110px;
+
+    font-family:inherit;
+
+    font-size:15px;
+
+    box-sizing:border-box;
+
+}
+
+.modal-recetario textarea:focus{
+
+    outline:none;
+
+    border-color:#1d3557;
+
+    box-shadow:0 0 0 3px rgba(29,53,87,.10);
+
+}

@@ -8,6 +8,7 @@ import FormRecetario from "../components/recetario/FormRecetario";
 import {
     obtenerRecetarios,
     crearRecetario,
+    actualizarRecetario,
     eliminarRecetario
 } from "../services/recetarioService";
 
@@ -22,6 +23,8 @@ function Recetarios() {
     const [recetarios, setRecetarios] = useState([]);
 
     const [mostrarFormulario, setMostrarFormulario] = useState(false);
+
+    const [recetarioEditando, setRecetarioEditando] = useState(null);
 
     const [cargando, setCargando] = useState(true);
 
@@ -72,28 +75,37 @@ function Recetarios() {
 
         try {
 
-            await crearRecetario({
+            if (recetarioEditando) {
 
-                ...datos,
+                await actualizarRecetario(
 
-                id_alumno: alumno.id_alumno
+                    recetarioEditando.id_recetario,
 
-            });
+                    datos
 
+                );
+
+            } else {
+
+                await crearRecetario({
+
+                    ...datos,
+
+                    id_alumno: alumno.id_alumno
+
+                });
+
+            }
 
             await cargarRecetarios();
 
-
             setMostrarFormulario(false);
 
-
+            setRecetarioEditando(null);
 
         } catch (error) {
 
-            console.error(
-                "Error creando recetario:",
-                error
-            );
+            console.error(error);
 
         }
 
@@ -113,13 +125,9 @@ function Recetarios() {
 
     const editarRecetario = (recetario) => {
 
-        console.log(
-            "Editar recetario:",
-            recetario
-        );
+        setRecetarioEditando(recetario);
 
-        // Aquí después abriremos
-        // el formulario con datos existentes
+        setMostrarFormulario(true);
 
     };
 
@@ -233,11 +241,17 @@ function Recetarios() {
 
                     <FormRecetario
 
+                        recetario={recetarioEditando}
+
                         onGuardar={guardarRecetario}
 
-                        onCancelar={() =>
-                            setMostrarFormulario(false)
-                        }
+                        onCancelar={() => {
+
+                            setMostrarFormulario(false);
+
+                            setRecetarioEditando(null);
+
+                        }}
 
                     />
 

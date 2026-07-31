@@ -6,16 +6,28 @@ function Sidebar() {
 
         <aside className="sidebar">
 
+            <div className="sidebar-titulo">
+
+                Menú
+
+            </div>
+
             <NavLink to="/dashboard">
-                Dashboard
+
+                🏠 Dashboard
+
             </NavLink>
 
             <NavLink to="/recetarios">
-                Recetarios
+
+                📚 Recetarios
+
             </NavLink>
 
             <NavLink to="/perfil">
-                Perfil
+
+                👤 Perfil
+
             </NavLink>
 
         </aside>
