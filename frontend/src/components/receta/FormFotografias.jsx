@@ -3,67 +3,93 @@ function FormFotografias({
     setFotografias
 }) {
 
-    const seleccionarImagenes = (e) => {
+    const listaFotografias = Array.isArray(fotografias)
+        ? fotografias
+        : [];
 
-        const archivos = Array.from(e.target.files);
 
-        const nuevas = archivos.map((archivo) => ({
+    const seleccionarImagen = (e) => {
 
-            archivo,
+        const archivo = e.target.files[0];
 
-            preview: URL.createObjectURL(archivo)
+        if (!archivo) return;
 
-        }));
 
-        setFotografias([
-            ...fotografias,
-            ...nuevas
-        ]);
+        const reader = new FileReader();
+
+
+        reader.onload = () => {
+
+            setFotografias([
+
+                {
+                    imagen: reader.result,
+                    preview: reader.result
+                }
+
+            ]);
+
+        };
+
+
+        reader.readAsDataURL(archivo);
 
     };
+
 
     const eliminarFotografia = (index) => {
 
-        const nuevas = fotografias.filter(
-            (_, i) => i !== index
+        setFotografias(
+
+            fotografias.filter(
+                (_, i) => i !== index
+            )
+
         );
 
-        setFotografias(nuevas);
-
     };
+
 
     return (
 
         <section className="form-seccion">
 
-            <h2>Fotografías</h2>
+            <h2>Fotografía de la receta</h2>
+
 
             <input
                 type="file"
-                multiple
                 accept="image/*"
-                onChange={seleccionarImagenes}
+                onChange={seleccionarImagen}
             />
 
             {
-
-                fotografias.length > 0 && (
+                listaFotografias.length > 0 && (
 
                     <div className="galeria-fotos">
 
                         {
-
-                            fotografias.map((foto, index) => (
+                            listaFotografias.map(
+                                (foto, index) => (
 
                                 <div
                                     className="foto-item"
-                                    key={index}
+                                    key={
+                                        foto.id_fotografia
+                                            ? foto.id_fotografia
+                                            : index
+                                    }
                                 >
 
                                     <img
-                                        src={foto.preview}
+                                        src={
+                                            foto.preview
+                                                ? foto.preview
+                                                : `data:image/jpeg;base64,${foto.imagen}`
+                                        }
                                         alt={`Foto ${index + 1}`}
                                     />
+
 
                                     <button
                                         type="button"
@@ -71,8 +97,11 @@ function FormFotografias({
                                             eliminarFotografia(index)
                                         }
                                     >
+
                                         Eliminar
+
                                     </button>
+
 
                                 </div>
 
@@ -83,13 +112,14 @@ function FormFotografias({
                     </div>
 
                 )
-
             }
+
 
         </section>
 
     );
 
 }
+
 
 export default FormFotografias;

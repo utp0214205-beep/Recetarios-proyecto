@@ -30,7 +30,7 @@ router.get(
 
 // ACTUALIZAR RECETA
 router.put(
-    "/recetario/:id_recetario/:id_receta",
+    "/recetarios/:id_recetario/recetas/:id_receta",
     RecetaController.actualizar
 );
 

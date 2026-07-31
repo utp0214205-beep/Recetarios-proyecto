@@ -22,9 +22,15 @@ function DetalleDatosGenerales({ receta }) {
 
                 <div>
 
-                    <strong>Fecha</strong>
+                    <strong>FECHA PRUEBA</strong>
 
-                    <p>{receta.fecha}</p>
+                    <p>
+                        {
+                            receta.fecha
+                                ? new Date(receta.fecha).toLocaleDateString("es-MX")
+                                : ""
+                        }
+                    </p>
 
                 </div>
 

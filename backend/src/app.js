@@ -26,8 +26,8 @@ app.use('/api/alumnos', alumnoRoutes);
 // Recetarios
 app.use('/api/recetarios', recetarioRoutes);
 
-// Recetas globales
-app.use('/api/recetas', recetaRoutes);
+// Recetas
+app.use('/api', recetaRoutes);
 // Control 404 global
 app.use((req, res, next) => {
   res.status(404).json({ message: 'Recurso no encontrado en el servidor API.' });

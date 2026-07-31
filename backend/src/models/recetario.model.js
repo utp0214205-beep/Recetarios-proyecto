@@ -37,11 +37,79 @@ const RecetarioModel = {
     return result.affectedRows > 0;
   },
 
-  delete: async (id_recetario) => {
-    const query = 'DELETE FROM recetario WHERE id_recetario = ?';
-    const [result] = await db.execute(query, [id_recetario]);
+    delete: async (id_recetario) => {
+
+    const query =
+      'DELETE FROM recetario WHERE id_recetario = ?';
+
+
+    const [result] =
+      await db.execute(
+        query,
+        [id_recetario]
+      );
+
+
     return result.affectedRows > 0;
+
+  },
+
+
+  obtenerDetalleRecetario: async (id_recetario) => {
+
+    const [recetario] =
+      await db.execute(
+        `
+        SELECT
+            r.id_recetario,
+            r.nombre,
+            r.fecha_creacion,
+            a.nombre AS alumno_nombre,
+            a.apellido_paterno,
+            a.apellido_materno
+        FROM recetario r
+        INNER JOIN alumno a
+            ON r.id_alumno = a.id_alumno
+        WHERE r.id_recetario = ?
+        `,
+        [id_recetario]
+      );
+
+
+    if (recetario.length === 0) {
+
+      return null;
+
+    }
+
+
+    const [recetas] =
+      await db.execute(
+        `
+        SELECT
+            id_receta,
+            nombre_platillo,
+            asignatura,
+            clasificacion
+        FROM receta
+        WHERE id_recetario = ?
+        ORDER BY id_receta ASC
+        `,
+        [id_recetario]
+      );
+
+
+    return {
+
+      ...recetario[0],
+
+      recetas
+
+    };
+
   }
+
 };
+
 
 module.exports = RecetarioModel;

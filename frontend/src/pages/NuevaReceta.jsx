@@ -7,6 +7,8 @@ import {
     actualizarReceta
 } from "../services/recetaService";
 
+import "../assets/styles/nuevaReceta.css";
+
 import FormDatosGenerales from "../components/receta/FormDatosGenerales";
 import FormIngredientes from "../components/receta/FormIngredientes";
 import FormProcedimiento from "../components/receta/FormProcedimiento";
@@ -91,11 +93,21 @@ function NuevaReceta() {
                 idReceta
             );
 
+
             setDatosReceta({
 
                 ...receta,
 
-                ingredientes: receta.ingredientes || [],
+
+                fecha:
+                    receta.fecha
+                        ? receta.fecha.substring(0, 10)
+                        : "",
+
+
+                ingredientes:
+                    receta.ingredientes || [],
+
 
                 procedimiento:
                     receta.procedimiento || {
@@ -103,12 +115,14 @@ function NuevaReceta() {
                         instrucciones: ""
                     },
 
+
                 tecnica_culinaria:
                     receta.tecnica_culinaria || {
                         tipo_corte: "",
                         metodo_coccion: "",
                         tecnica_elaboracion: ""
                     },
+
 
                 equipo:
                     receta.equipo || {
@@ -119,8 +133,19 @@ function NuevaReceta() {
                         unidades_medicion: ""
                     },
 
+
                 fotografias:
-                    receta.fotografias || [],
+
+                receta.fotografias?.length
+                    ? [
+                        {
+                            ...receta.fotografias[0],
+                            preview:
+                                `data:image/jpeg;base64,${receta.fotografias[0].imagen}`
+                        }
+                    ]
+                    : [],
+
 
                 informacion_complementaria:
                     receta.informacion_complementaria || {
@@ -131,6 +156,7 @@ function NuevaReceta() {
                     }
 
             });
+
 
         } catch (error) {
 
@@ -145,7 +171,6 @@ function NuevaReceta() {
         }
 
     };
-
     const manejarCambio = (e) => {
 
         const { name, value } = e.target;
@@ -235,6 +260,11 @@ function NuevaReceta() {
 
         e.preventDefault();
 
+        console.log(
+            "FOTOGRAFIAS ANTES DE GUARDAR:",
+            datosReceta.fotografias
+        );
+
         try {
 
             if (editando) {
@@ -262,9 +292,15 @@ function NuevaReceta() {
 
         } catch (error) {
 
-            console.error(error);
+            console.error("ERROR COMPLETO:", error);
 
-            alert("Ocurrió un error.");
+            console.log("RESPUESTA:", error.response);
+
+            console.log("DATA:", error.response?.data);
+
+            alert(
+                JSON.stringify(error.response?.data)
+            );
 
         }
 

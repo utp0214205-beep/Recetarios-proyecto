@@ -11,15 +11,11 @@ import {
 
 import "../assets/styles/recetario.css";
 
-
 function RecetarioDetalle() {
-
 
     const { id } = useParams();
 
     const navigate = useNavigate();
-
-
 
     const [recetario, setRecetario] = useState(null);
 
@@ -27,82 +23,48 @@ function RecetarioDetalle() {
 
     const [cargando, setCargando] = useState(true);
 
-
-
-
     useEffect(() => {
 
         cargarDatos();
 
     }, [id]);
 
-
-
-
-
     const cargarDatos = async () => {
 
         try {
 
-
             const datosRecetario =
                 await obtenerRecetarioPorId(id);
 
-
-
             const datosRecetas =
                 await obtenerRecetas(id);
-
-
 
             setRecetario(datosRecetario);
 
             setRecetas(datosRecetas);
 
-
-
         } catch (error) {
-
 
             console.error(
                 "Error cargando el recetario:",
                 error
             );
 
-
         } finally {
 
-
             setCargando(false);
-
 
         }
 
     };
 
-
-
-
-
     const nuevaReceta = () => {
-
 
         navigate(
             `/recetarios/${id}/nueva-receta`
         );
 
-
     };
-
-    const abrirReceta = (idReceta) => {
-
-        navigate(
-            `/recetarios/${id}/recetas/${idReceta}`
-        );
-
-    };
-
-
 
     if (cargando) {
 
@@ -118,10 +80,6 @@ function RecetarioDetalle() {
 
     }
 
-
-
-
-
     if (!recetario) {
 
         return (
@@ -136,21 +94,11 @@ function RecetarioDetalle() {
 
     }
 
-
-
-
-
-
     return (
 
         <div className="recetario-detalle">
 
-
-
-
-
             <section className="encabezado-recetario">
-
 
                 <h1>
 
@@ -158,52 +106,30 @@ function RecetarioDetalle() {
 
                 </h1>
 
-
-
                 <p>
 
                     Gestiona las recetas pertenecientes a este recetario.
 
                 </p>
 
-
-
-
                 <button
-
                     className="boton-nueva-receta"
-
                     onClick={nuevaReceta}
-
                 >
 
                     + Nueva receta
 
                 </button>
 
-
-
             </section>
 
-
-
-
-
-
-
             <section className="lista-recetas">
-
-
 
                 <h2>
 
                     Mis recetas
 
                 </h2>
-
-
-
-
 
                 {
 
@@ -215,23 +141,13 @@ function RecetarioDetalle() {
 
                         </p>
 
-
                     ) : (
 
-
-
                         recetas.map((receta) => (
-
-
 
                             <div
                                 key={receta.id_receta}
                                 className="tarjeta-receta"
-                                onClick={() =>
-                                    navigate(
-                                        `/recetarios/${id}/recetas/${receta.id_receta}`
-                                    )
-                                }
                             >
 
                                 <h3>
@@ -246,34 +162,50 @@ function RecetarioDetalle() {
 
                                 </p>
 
+                                <div className="acciones-receta">
+
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            navigate(
+                                                `/recetarios/${id}/recetas/${receta.id_receta}`
+                                            )
+                                        }
+                                    >
+
+                                        Abrir
+
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        onClick={() =>
+                                            navigate(
+                                                `/recetarios/${id}/recetas/${receta.id_receta}/editar`
+                                            )
+                                        }
+                                    >
+
+                                        Editar
+
+                                    </button>
+
+                                </div>
+
                             </div>
-
-
 
                         ))
 
-
                     )
-
 
                 }
 
-
-
-
-
             </section>
-
-
-
-
 
         </div>
 
     );
 
-
 }
-
 
 export default RecetarioDetalle;

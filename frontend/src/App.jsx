@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import MainLayout from "./components/layout/MainLayout";
 import ProtectedRoute from "./router/ProtectedRoute";
 
+
 import Dashboard from "./pages/Dashboard";
 import Recetarios from "./pages/Recetarios";
 import Perfil from "./pages/Perfil";
@@ -75,7 +76,7 @@ function App() {
                 />
                 
                 <Route
-                    path="/recetarios/:idRecetario/recetas/:idReceta/editar"
+                    path="/recetarios/:id/recetas/:idReceta/editar"
                     element={<NuevaReceta />}
                 />
 

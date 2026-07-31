@@ -311,9 +311,10 @@ const RecetaService = {
 
     },
         actualizarRecetaCompleta: async (
-        id_receta,
-        datosReceta
-    ) => {
+            id_recetario,
+            id_receta,
+            datosReceta
+        ) => {
 
         const connection = await pool.getConnection();
 

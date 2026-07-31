@@ -39,7 +39,11 @@ function FichaPagina1({ receta }) {
 
                     <tr>
                         <th>Fecha</th>
-                        <td>{receta.fecha}</td>
+                        <td>{
+                            receta.fecha
+                                ? new Date(receta.fecha).toLocaleDateString("es-MX")
+                                : ""
+                        }</td>
 
                         <th>Tiempo preparación</th>
                         <td>{receta.tiempo_preparacion}</td>

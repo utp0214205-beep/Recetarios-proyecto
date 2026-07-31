@@ -30,8 +30,14 @@ const RecetaModel = {
 
     obtenerDetalleCompleto: async (id_receta) => {
 
-        const [receta] = await db.execute(
-            "SELECT * FROM receta WHERE id_receta=?",
+       const [receta] = await db.execute(
+            `
+            SELECT
+                *,
+                DATE_FORMAT(fecha, '%Y-%m-%d') AS fecha
+            FROM receta
+            WHERE id_receta=?
+            `,
             [id_receta]
         );
 

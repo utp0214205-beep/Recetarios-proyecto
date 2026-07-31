@@ -7,6 +7,7 @@ import "../assets/styles/detalleReceta.css";
 import "../assets/styles/fichaReceta.css";
 
 import FichaReceta from "../components/receta/ficha/FichaReceta";
+import DetalleDatosGenerales from "../components/receta/detalle/DetalleDatosGenerales";
 
 function DetalleReceta() {
 

@@ -118,15 +118,13 @@ const RecetaController = {
                 id_receta
             } = req.params;
 
+
             await RecetaService.actualizarRecetaCompleta(
-
                 id_recetario,
-
                 id_receta,
-
                 req.body
-
             );
+
 
             return res.status(200).json({
 
@@ -134,20 +132,24 @@ const RecetaController = {
 
             });
 
+
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                "ERROR ACTUALIZANDO RECETA:",
+                error
+            );
+
 
             return res.status(500).json({
 
-                message: "Error al actualizar la receta."
+                message: error.message
 
             });
 
         }
 
     },
-
     getAll: async (req, res) => {
 
         try {

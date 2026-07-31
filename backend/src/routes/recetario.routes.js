@@ -10,21 +10,57 @@ router.post('/', RecetarioController.crear);
 
 router.get('/', RecetarioController.listarMisRecetarios);
 
-router.get('/:id', RecetarioController.obtenerPorId);
 
-router.put('/:id', RecetarioController.actualizar);
+// ========= EXPORTAR RECETARIO =========
 
-router.delete('/:id', RecetarioController.eliminar);
+// GET /api/recetarios/1/pdf
+router.get(
+    '/:id_recetario/pdf',
+    RecetarioController.exportarPDF
+);
+
+
+// Obtener recetario por ID
+// GET /api/recetarios/1
+router.get(
+    '/:id',
+    RecetarioController.obtenerPorId
+);
+
+
+router.put(
+    '/:id',
+    RecetarioController.actualizar
+);
+
+
+router.delete(
+    '/:id',
+    RecetarioController.eliminar
+);
+
 
 // ========= RECETAS DEL RECETARIO =========
 
 // POST /api/recetarios/1/recetas
-router.post('/:id_recetario/recetas', RecetaController.crear);
+router.post(
+    '/:id_recetario/recetas',
+    RecetaController.crear
+);
+
 
 // GET /api/recetarios/1/recetas
-router.get('/:id_recetario/recetas', RecetaController.listarPorRecetario);
+router.get(
+    '/:id_recetario/recetas',
+    RecetaController.listarPorRecetario
+);
+
 
 // GET /api/recetarios/1/recetas/8
-router.get('/:id_recetario/recetas/:id_receta', RecetaController.obtenerDetalle);
+router.get(
+    '/:id_recetario/recetas/:id_receta',
+    RecetaController.obtenerDetalle
+);
+
 
 module.exports = router;
