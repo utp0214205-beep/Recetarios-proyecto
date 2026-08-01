@@ -1,9 +1,12 @@
-.ficha-receta-completa {
+.ficha-receta-completa{
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:40px;
 
 }
 
@@ -11,28 +14,31 @@
    HOJA A4 HORIZONTAL
 =========================================== */
 
-.ficha-pagina {
+.ficha-pagina{
 
-    width: 297mm;
-    height: 210mm;
+    width:297mm;
 
-    background: #fff;
+    height:212mm;
 
-    border: 2px solid #000;
+    background:#fff;
 
-    margin: 20px auto;
+    border:2px solid #000;
 
-    overflow: hidden;
+    margin:15px auto;
 
-    position: relative;
+    overflow:hidden;
 
-    box-sizing: border-box;
+    position:relative;
 
-    padding: 0;
-    
+    box-sizing:border-box;
+
+    display:flex;
+
+    flex-direction:column;
+
+    padding:0;
+
     font-family:Arial, Helvetica, sans-serif;
-
-    font-size:13px;
 
     color:#000;
 
@@ -42,148 +48,178 @@
    ENCABEZADO
 =========================================== */
 
-.ficha-header {
+.ficha-header{
 
-    width: 100%;
-    height: 95px;
+    width:100%;
 
-    margin: 0;
-    padding: 0;
+    height:100px;
 
-    overflow: hidden;
+    flex-shrink:0;
+
+    overflow:hidden;
 
 }
 
-.encabezado-ficha-img {
+.encabezado-ficha-img{
 
-    width: 100%;
-    height: 100%;
+    width:100%;
+    height:100%;
 
-    display: block;
+    display:block;
 
-    object-fit: cover;
+    object-fit:fill;
+
+    object-position:center;
 
 }
 
 /* ===========================================
-   DATOS GENERALES
+   TABLA DATOS GENERALES
 =========================================== */
 
-.tabla-datos {
+.tabla-datos{
 
-    width: 100%;
+    width:100%;
 
-    border-collapse: collapse;
+    border-collapse:collapse;
 
-    table-layout: fixed;
+    table-layout:fixed;
 
-    font-size: 14px;
+    margin:0;
 
-    margin: 0;
+    font-size:12px;
 
-}
-
-.tabla-datos tr {
-
-    height: 31px;
+    flex-shrink:0;
 
 }
 
-.tabla-datos th {
+.tabla-datos tr{
 
-    width: 20%;
-
-    background: #fff;
-
-    font-weight: bold;
-
-    text-align: left;
+    height:28px;
 
 }
 
-.tabla-datos td {
+.tabla-datos th{
 
-    width: 30%;
+    width:20%;
+
+    background:#fff;
+
+    font-weight:bold;
+
+    text-align:left;
+
+}
+
+.tabla-datos td{
+
+    width:30%;
 
 }
 
 .tabla-datos th,
-.tabla-datos td {
+.tabla-datos td{
 
-    border: 1px solid #000;
+    border:.7px solid #000;
 
-    padding: 4px 6px;
+    padding:4px 6px;
 
-    vertical-align: middle;
+    vertical-align:middle;
 
 }
 
 /* ===========================================
-   TABLA DE INGREDIENTES
+   CONTENEDOR INGREDIENTES
 =========================================== */
 
-.tabla-ingredientes {
+.contenedor-ingredientes{
 
-    width: 100%;
+    flex:1;
 
-    border-collapse: collapse;
+    display:flex;
 
-    table-layout: fixed;
+    width:100%;
 
-    font-size: 13px;
-
-    margin: 0;
+    overflow:hidden;
 
 }
 
-.tabla-ingredientes th {
+/* ===========================================
+   TABLA INGREDIENTES
+=========================================== */
 
-    background: #99cc00;
+.tabla-ingredientes{
 
-    color: #000;
+    width:100%;
 
-    border: 1px solid #000;
+    height:100%;
 
-    height: 30px;
+    border-collapse:collapse;
 
-    text-align: center;
+    table-layout:fixed;
 
-    font-weight: bold;
+    margin:0;
 
-}
-
-.tabla-ingredientes td {
-
-    border: 1px solid #000;
-
-    height: 22px;
-
-    padding: 2px 4px;
-
-    vertical-align: middle;
+    font-size:11px;
 
 }
 
-/* Anchuras de columnas */
+.tabla-ingredientes thead tr{
+
+    height:28px;
+
+}
+
+.tabla-ingredientes tbody tr{
+
+    height:22px;
+
+}
+
+.tabla-ingredientes th{
+
+    background:#99cc00;
+
+    color:#000;
+
+    border:.7px solid #000;
+
+    text-align:center;
+
+    font-weight:bold;
+
+}
+
+.tabla-ingredientes td{
+
+    border:.7px solid #000;
+
+    padding:2px 4px;
+
+    vertical-align:middle;
+
+}
+
+/* ======== ANCHO COLUMNAS ======== */
 
 .tabla-ingredientes th:nth-child(1),
 .tabla-ingredientes td:nth-child(1){
 
-    width:8%;
+    width:7%;
 
 }
 
 .tabla-ingredientes th:nth-child(2),
 .tabla-ingredientes td:nth-child(2){
 
-    width:10%;
+    width:9%;
 
 }
 
 .tabla-ingredientes th:nth-child(3),
 .tabla-ingredientes td:nth-child(3){
 
-    width:32%;
+    width:38%;
 
 }
 
@@ -197,183 +233,19 @@
 .tabla-ingredientes th:nth-child(5),
 .tabla-ingredientes td:nth-child(5){
 
-    width:18%;
+    width:17%;
 
 }
 
 .tabla-ingredientes th:nth-child(6),
 .tabla-ingredientes td:nth-child(6){
 
-    width:17%;
+    width:14%;
 
 }
 
-/* ===========================================
-   PIE DE LA PÁGINA 1
-=========================================== */
+/* ======== ALINEACIÓN ======== */
 
-.pie-pagina1 {
-
-    display: grid;
-
-    grid-template-columns: 3fr 2fr;
-
-    gap: 0;
-
-    margin: 0;
-
-}
-
-.pie-pagina1 div {
-
-    border: 1px solid #000;
-
-    min-height: 110px;
-
-    padding: 8px;
-
-    box-sizing: border-box;
-
-}
-
-.pie-pagina1 h3 {
-
-    margin: 0 0 8px;
-
-    font-size: 16px;
-
-}
-
-.pie-pagina1 p {
-
-    margin: 4px 0;
-
-    font-size: 14px;
-
-}
-
-.pie-pagina1 strong {
-
-    display: inline-block;
-
-    width: 180px;
-
-}
-
-/* ===========================================
-   SEGUNDA PÁGINA
-=========================================== */
-
-.procedimiento-grid {
-
-    display: grid;
-
-    grid-template-columns: 2fr 1fr;
-
-    gap: 25px;
-
-    margin-bottom: 25px;
-
-}
-
-.montaje img {
-
-    width: 100%;
-
-    border: 1px solid #000;
-
-    object-fit: cover;
-
-}
-
-.tabla-tecnica,
-.tabla-equipo {
-
-    width: 100%;
-
-    border-collapse: collapse;
-
-    margin-top: 20px;
-
-}
-
-.tabla-tecnica th,
-.tabla-equipo th {
-
-    background: #99cc00;
-
-    color: #000;
-
-}
-
-.tabla-tecnica th,
-.tabla-tecnica td,
-.tabla-equipo th,
-.tabla-equipo td {
-
-    border: 1px solid #000;
-
-    padding: 8px;
-
-}
-
-.informacion {
-
-    margin-top: 30px;
-
-}
-
-.informacion h3 {
-
-    color: #000;
-
-    margin-bottom: 8px;
-
-    font-size: 16px;
-
-}
-.tabla-costos{
-
-    width:100%;
-
-    border-collapse:collapse;
-
-    margin-top:auto;
-
-}
-
-.tabla-costos th{
-
-    text-align:left;
-
-    border:0.8px solid #000;
-
-    padding:4px;
-
-    font-size:13px;
-
-    background:#fff;
-
-}
-
-.tabla-costos td{
-
-    border:0.8px solid #000;
-
-    text-align:right;
-
-    padding:4px;
-
-    width:110px;
-
-}
-.contenedor-ingredientes{
-
-    height:520px;
-
-    overflow:hidden;
-
-}
 .tabla-ingredientes td{
 
     text-align:center;
@@ -387,6 +259,7 @@
     padding-left:8px;
 
 }
+
 .tabla-ingredientes td:nth-child(4),
 .tabla-ingredientes td:nth-child(5),
 .tabla-ingredientes td:nth-child(6){
@@ -394,5 +267,206 @@
     text-align:right;
 
     padding-right:6px;
+
+}
+
+/* ===========================================
+   PIE PÁGINA
+=========================================== */
+
+.pie-pagina1{
+
+    display:grid;
+
+    grid-template-columns:62% 38%;
+
+    width:100%;
+
+    margin:0;
+
+    gap:0;
+
+    flex-shrink:0;
+
+}
+
+.pie-pagina1>div{
+
+    border:.7px solid #000;
+
+    min-height:92px;
+
+    padding:6px;
+
+    box-sizing:border-box;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.pie-pagina1 strong{
+
+    display:block;
+
+    margin-bottom:4px;
+
+    font-size:11px;
+
+}
+
+.pie-pagina1 p{
+
+    margin:0;
+
+    line-height:1.25;
+
+    font-size:11px;
+
+}
+
+/* ===========================================
+   TABLA COSTOS
+=========================================== */
+
+.tabla-costos{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:auto;
+
+    font-size:11px;
+
+}
+
+.tabla-costos th{
+
+    background:#fff;
+
+    border:.7px solid #000;
+
+    padding:2px 5px;
+
+    text-align:left;
+
+    font-weight:bold;
+
+}
+
+.tabla-costos td{
+
+    border:.7px solid #000;
+
+    padding:2px 6px;
+
+    text-align:right;
+
+    width:90px;
+
+}
+
+/* ===========================================
+   SEGUNDA FICHA
+=========================================== */
+
+.procedimiento-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:25px;
+
+    margin-bottom:25px;
+
+}
+
+.montaje img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    border:.7px solid #000;
+
+}
+
+.tabla-tecnica,
+.tabla-equipo{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.tabla-tecnica th,
+.tabla-equipo th{
+
+    background:#99cc00;
+
+    color:#000;
+
+}
+
+.tabla-tecnica th,
+.tabla-tecnica td,
+.tabla-equipo th,
+.tabla-equipo td{
+
+    border:.7px solid #000;
+
+    padding:8px;
+
+    font-size:12px;
+
+}
+
+.informacion{
+
+    margin-top:25px;
+
+}
+
+.informacion h3{
+
+    margin-bottom:8px;
+
+    font-size:13px;
+
+    color:#000;
+
+}
+
+.informacion p{
+
+    line-height:1.35;
+
+    font-size:12px;
+
+}
+.ficha-pagina{
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    width:297mm;
+    height:210mm;
+
+    overflow:hidden;
+
+}
+.contenedor-ingredientes{
+
+    flex:1;
 
 }
