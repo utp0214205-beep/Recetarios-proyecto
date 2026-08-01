@@ -1,3 +1,4 @@
+import encabezadoFicha from "../../../assets/images/encabezado-ficha.png";
 function FichaPagina1({ receta }) {
 
     return (
@@ -6,13 +7,11 @@ function FichaPagina1({ receta }) {
 
             <header className="ficha-header">
 
-                <div className="titulo">
-
-                    <h2>Ficha de Recetario de Alimentos</h2>
-
-                    <h1>Gastronomía</h1>
-
-                </div>
+                <img
+                    src={encabezadoFicha}
+                    alt="Encabezado"
+                    className="encabezado-ficha-img"
+                />
 
             </header>
 

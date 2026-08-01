@@ -11,17 +11,21 @@
 }
 .ficha-pagina{
 
-    width:100%;
+    width:210mm;
 
-    max-width:900px;
+    min-height:297mm;
 
-    background:white;
+    background:#fff;
 
-    border:1px solid #000;
+    border:2px solid #000;
 
-    padding:25px;
+    margin:30px auto;
+
+    padding:0;
 
     box-sizing:border-box;
+
+    position:relative;
 
 }
 .ficha-header{
@@ -59,10 +63,11 @@
 
     border-collapse:collapse;
 
-    margin-bottom:25px;
+    table-layout:fixed;
+
+    font-size:14px;
 
 }
-
 .tabla-datos th{
 
     background:#dfeec6;
@@ -71,20 +76,23 @@
 
 }
 
-.tabla-datos td{
+.tabla-datos th{
 
-    width:30%;
+    background:#fff;
+
+    font-weight:bold;
+
+    text-align:left;
 
 }
-
 .tabla-datos th,
 .tabla-datos td{
 
-    border:1px solid black;
+    border:1px solid #000;
 
-    padding:8px;
+    padding:4px 6px;
 
-    text-align:left;
+    height:26px;
 
 }
 .tabla-ingredientes{
@@ -93,24 +101,32 @@
 
     border-collapse:collapse;
 
-    margin-top:20px;
+    table-layout:fixed;
+
+    font-size:13px;
 
 }
 
 .tabla-ingredientes th{
 
-    background:#dfeec6;
+    background:#99cc00;
+
+    color:#000;
+
+    border:1px solid #000;
+
+    height:30px;
 
 }
 
 .tabla-ingredientes th,
 .tabla-ingredientes td{
 
-    border:1px solid black;
+    border:1px solid #000;
 
-    padding:7px;
+    height:22px;
 
-    font-size:14px;
+    padding:2px 4px;
 
 }
 
@@ -194,5 +210,22 @@
     color:#1d3557;
 
     margin-bottom:8px;
+
+}
+.ficha-header{
+
+    width:100%;
+
+    margin:0;
+
+    padding:0;
+
+}
+
+.encabezado-ficha-img{
+
+    width:100%;
+
+    display:block;
 
 }
