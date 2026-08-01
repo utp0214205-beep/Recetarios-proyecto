@@ -1,5 +1,13 @@
 import encabezadoFicha from "../../../assets/images/encabezado-ficha.png";
 function FichaPagina1({ receta }) {
+    const ingredientes = receta.ingredientes || [];
+
+    const FILAS = 17;
+
+    const filasVacias = Math.max(
+        0,
+        FILAS - ingredientes.length
+    );
 
     return (
 
@@ -77,7 +85,9 @@ function FichaPagina1({ receta }) {
             </table>
 
 
-            <table className="tabla-ingredientes">
+            <div className="contenedor-ingredientes">
+
+                <table className="tabla-ingredientes">
 
                 <thead>
 
@@ -91,7 +101,7 @@ function FichaPagina1({ receta }) {
 
                         <th>COSTO UNITARIO</th>
 
-                        <th>% REND.</th>
+                        <th>% DE RENDIMIENTO</th>
 
                         <th>IMPORTE</th>
 
@@ -101,7 +111,7 @@ function FichaPagina1({ receta }) {
 
                 <tbody>
 
-                    {receta.ingredientes.map((item) => (
+                    {ingredientes.map((item) => (
 
                         <tr key={item.id_ingrediente_receta}>
 
@@ -111,11 +121,49 @@ function FichaPagina1({ receta }) {
 
                             <td>{item.nombre}</td>
 
-                            <td>${item.costo_unitario}</td>
+                            <td>
 
-                            <td>{item.rendimiento}</td>
+                                {item.costo_unitario
+                                    ? `$ ${Number(item.costo_unitario).toFixed(2)}`
+                                    : ""}
 
-                            <td>${item.importe}</td>
+                            </td>
+
+                            <td>
+
+                                {item.rendimiento
+                                    ? `${item.rendimiento}%`
+                                    : ""}
+
+                            </td>
+
+                            <td>
+
+                                {item.importe
+                                    ? `$ ${Number(item.importe).toFixed(2)}`
+                                    : ""}
+
+                            </td>
+
+                        </tr>
+
+                    ))}
+
+                    {Array.from({ length: filasVacias }).map((_, i) => (
+
+                        <tr key={`vacia-${i}`}>
+
+                            <td>&nbsp;</td>
+
+                            <td></td>
+
+                            <td></td>
+
+                            <td></td>
+
+                            <td></td>
+
+                            <td></td>
 
                         </tr>
 
@@ -123,14 +171,20 @@ function FichaPagina1({ receta }) {
 
                 </tbody>
 
-            </table>
+                </table>
+
+            </div>
 
 
             <div className="pie-pagina1">
 
                 <div>
 
-                    <h3>Buenas Prácticas de Higiene</h3>
+                    <strong>
+
+                        Buenas Prácticas de Higiene:
+
+                    </strong>
 
                     <p>
 
@@ -142,21 +196,61 @@ function FichaPagina1({ receta }) {
 
                 <div>
 
-                    <p>
+                    <table className="tabla-costos">
 
-                        <strong>Costo receta:</strong>
+                        <tbody>
 
-                        ${receta.costo_total}
+                            <tr>
 
-                    </p>
+                                <th>
 
-                    <p>
+                                    Costo de insumos de la receta:
 
-                        <strong>Costo por porción:</strong>
+                                </th>
 
-                        ${receta.costo_por_porcion}
+                                <td>
 
-                    </p>
+                                    $
+
+                                    {
+
+                                        Number(
+                                            receta.costo_total || 0
+                                        ).toFixed(2)
+
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                    Costo de insumos por porción:
+
+                                </th>
+
+                                <td>
+
+                                    $
+
+                                    {
+
+                                        Number(
+                                            receta.costo_por_porcion || 0
+                                        ).toFixed(2)
+
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
 
                 </div>
 
