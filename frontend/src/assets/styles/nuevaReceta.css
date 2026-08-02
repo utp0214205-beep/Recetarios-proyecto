@@ -288,3 +288,604 @@
     }
 
 }
+/* ===========================================
+   EDITOR DE RECETA ESTILO FICHA OFICIAL
+=========================================== */
+
+
+/* Datos generales */
+
+.ficha-edicion{
+
+    width:100%;
+
+}
+
+.tabla-datos-edicion{
+
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    margin:0;
+
+}
+
+.tabla-datos-edicion th,
+.tabla-datos-edicion td{
+
+    border:1px solid #000;
+    height:38px;
+    padding:4px 6px;
+    vertical-align:middle;
+
+}
+
+
+.tabla-datos-edicion th{
+
+    width:20%;
+    font-size:13px;
+    font-weight:bold;
+    text-align:left;
+
+}
+
+
+.tabla-datos-edicion td{
+
+    width:30%;
+
+}
+
+
+.tabla-datos-edicion input{
+
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+    font-size:13px;
+    padding:2px;
+    box-sizing:border-box;
+
+}
+
+
+.tabla-datos-edicion input:focus{
+
+    background:#fff8d8;
+
+}
+/* ===========================================
+   INGREDIENTES ESTILO FICHA
+=========================================== */
+
+
+.tabla-ingredientes-edicion{
+
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+
+}
+
+
+.tabla-ingredientes-edicion th,
+.tabla-ingredientes-edicion td{
+
+    border:1px solid #000;
+    padding:4px;
+    height:35px;
+
+}
+
+
+.tabla-ingredientes-edicion th{
+
+    font-size:12px;
+    text-align:center;
+    font-weight:bold;
+
+}
+
+
+.tabla-ingredientes-edicion input{
+
+    width:100%;
+    border:none;
+    outline:none;
+    background:transparent;
+
+    font-size:13px;
+
+    text-align:center;
+
+}
+
+
+.tabla-ingredientes-edicion td:nth-child(3) input{
+
+    text-align:left;
+
+}
+
+
+.tabla-ingredientes-edicion input:focus{
+
+    background:#fff8d8;
+
+}
+
+
+.btn-agregar-fila{
+
+    margin-top:12px;
+
+}
+/* ===========================================
+   INFORMACIÓN COMPLEMENTARIA ESTILO FICHA
+=========================================== */
+
+
+.tabla-informacion-edicion{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+
+.tabla-informacion-edicion th,
+.tabla-informacion-edicion td{
+
+    border:1px solid #000;
+    padding:6px;
+    vertical-align:top;
+
+}
+
+
+.tabla-informacion-edicion th{
+
+    width:25%;
+
+    font-size:13px;
+
+    text-align:left;
+
+    font-weight:bold;
+
+}
+
+
+.tabla-informacion-edicion td{
+
+    width:75%;
+
+}
+
+
+.tabla-informacion-edicion textarea{
+
+    width:100%;
+
+    min-height:120px;
+
+    border:none;
+
+    resize:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    line-height:1.4;
+
+    box-sizing:border-box;
+
+}
+
+
+.tabla-informacion-edicion textarea:focus{
+
+    background:#fff8d8;
+
+}
+/* ===========================================
+   PROCEDIMIENTO ESTILO FICHA
+=========================================== */
+
+
+.tabla-procedimiento-edicion{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+.tabla-procedimiento-edicion th,
+.tabla-procedimiento-edicion td{
+
+    border:1px solid #000;
+
+    padding:6px;
+
+    vertical-align:top;
+
+}
+
+
+.tabla-procedimiento-edicion th{
+
+    width:25%;
+
+    font-size:13px;
+
+    text-align:left;
+
+    font-weight:bold;
+
+}
+
+
+.tabla-procedimiento-edicion td{
+
+    width:75%;
+
+}
+
+
+.tabla-procedimiento-edicion textarea{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    resize:none;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+    box-sizing:border-box;
+
+}
+
+
+.tabla-procedimiento-edicion textarea:focus{
+
+    background:#fff8d8;
+
+}
+/* ===========================================
+   TÉCNICA CULINARIA ESTILO FICHA
+=========================================== */
+
+
+.tabla-tecnica-edicion{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+.tabla-tecnica-edicion th,
+.tabla-tecnica-edicion td{
+
+    border:1px solid #000;
+
+    padding:6px;
+
+    vertical-align:middle;
+
+}
+
+
+.tabla-tecnica-edicion th{
+
+    width:25%;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    text-align:left;
+
+}
+
+
+.tabla-tecnica-edicion td{
+
+    width:75%;
+
+}
+
+
+.tabla-tecnica-edicion input,
+.tabla-tecnica-edicion textarea{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    box-sizing:border-box;
+
+}
+
+
+.tabla-tecnica-edicion textarea{
+
+    resize:none;
+
+    line-height:1.5;
+
+}
+
+
+.tabla-tecnica-edicion input:focus,
+.tabla-tecnica-edicion textarea:focus{
+
+    background:#fff8d8;
+
+}
+/* ===========================================
+   EQUIPO Y UTENSILIOS ESTILO FICHA
+=========================================== */
+
+
+.tabla-equipo-edicion{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+.tabla-equipo-edicion th,
+.tabla-equipo-edicion td{
+
+    border:1px solid #000;
+
+    padding:6px;
+
+    vertical-align:top;
+
+}
+
+
+.tabla-equipo-edicion th{
+
+    width:25%;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    text-align:left;
+
+}
+
+
+.tabla-equipo-edicion td{
+
+    width:75%;
+
+}
+
+
+.tabla-equipo-edicion input,
+.tabla-equipo-edicion textarea{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    box-sizing:border-box;
+
+}
+
+
+.tabla-equipo-edicion textarea{
+
+    resize:none;
+
+    line-height:1.5;
+
+}
+
+
+.tabla-equipo-edicion input:focus,
+.tabla-equipo-edicion textarea:focus{
+
+    background:#fff8d8;
+
+}
+/* ===========================================
+   FOTOGRAFÍA ESTILO FICHA
+=========================================== */
+
+
+.tabla-fotografia-edicion{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+.tabla-fotografia-edicion th,
+.tabla-fotografia-edicion td{
+
+    border:1px solid #000;
+
+    padding:10px;
+
+    vertical-align:middle;
+
+}
+
+
+.tabla-fotografia-edicion th{
+
+    width:25%;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+    text-align:left;
+
+}
+
+
+.tabla-fotografia-edicion td{
+
+    width:75%;
+
+}
+
+
+
+.contenedor-foto-edicion{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+
+.foto-edicion img{
+
+    width:280px;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border:1px solid #000;
+
+}
+
+
+
+.btn-cambiar-foto{
+
+    border:1px solid #000;
+
+    padding:6px 12px;
+
+    cursor:pointer;
+
+    font-size:13px;
+
+}
+
+
+
+.btn-cambiar-foto input{
+
+    display:none;
+
+}
+
+
+
+.foto-edicion button{
+
+    cursor:pointer;
+
+}
+/* ===========================================
+   ESTRUCTURA FICHA EDITABLE COMPLETA
+=========================================== */
+
+
+.ficha-pagina-edicion{
+
+    width:100%;
+
+    max-width:900px;
+
+    margin:20px auto;
+
+    background:white;
+
+    border:1px solid #000;
+
+    padding:15px;
+
+    box-sizing:border-box;
+
+}
+
+
+
+.ficha-header{
+
+    margin-bottom:15px;
+
+}
+
+
+
+.encabezado-ficha-img{
+
+    width:100%;
+
+    display:block;
+
+}
+
+
+
+.segunda-pagina{
+
+    margin-top:40px;
+
+}
+
+
+
+.ficha-pagina-edicion .form-seccion{
+
+    margin-bottom:15px;
+
+}

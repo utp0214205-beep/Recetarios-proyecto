@@ -3,9 +3,11 @@ function FormFotografias({
     setFotografias
 }) {
 
+
     const listaFotografias = Array.isArray(fotografias)
         ? fotografias
         : [];
+
 
 
     const seleccionarImagen = (e) => {
@@ -37,85 +39,137 @@ function FormFotografias({
     };
 
 
+
     const eliminarFotografia = (index) => {
+
 
         setFotografias(
 
             fotografias.filter(
-                (_, i) => i !== index
+                (_, i)=> i !== index
             )
 
         );
 
+
     };
+
 
 
     return (
 
-        <section className="form-seccion">
-
-            <h2>Fotografía de la receta</h2>
+        <section className="form-seccion ficha-edicion">
 
 
-            <input
-                type="file"
-                accept="image/*"
-                onChange={seleccionarImagen}
-            />
+            <table className="tabla-fotografia-edicion">
 
-            {
-                listaFotografias.length > 0 && (
 
-                    <div className="galeria-fotos">
+                <tbody>
 
-                        {
-                            listaFotografias.map(
-                                (foto, index) => (
 
-                                <div
-                                    className="foto-item"
-                                    key={
-                                        foto.id_fotografia
-                                            ? foto.id_fotografia
-                                            : index
-                                    }
-                                >
+                    <tr>
 
-                                    <img
-                                        src={
-                                            foto.preview
-                                                ? foto.preview
-                                                : `data:image/jpeg;base64,${foto.imagen}`
-                                        }
-                                        alt={`Foto ${index + 1}`}
+
+                        <th>
+                            Fotografía de la receta
+                        </th>
+
+
+
+                        <td>
+
+
+                            <div className="contenedor-foto-edicion">
+
+
+                                <label className="btn-cambiar-foto">
+
+
+                                    Cambiar fotografía
+
+
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={seleccionarImagen}
                                     />
 
 
-                                    <button
-                                        type="button"
-                                        onClick={() =>
-                                            eliminarFotografia(index)
-                                        }
-                                    >
-
-                                        Eliminar
-
-                                    </button>
+                                </label>
 
 
-                                </div>
 
-                            ))
+                                {
+                                    listaFotografias.length > 0 && (
 
-                        }
+                                        listaFotografias.map(
+                                            (foto,index)=>(
 
-                    </div>
+                                                <div
+                                                    className="foto-edicion"
+                                                    key={index}
+                                                >
 
-                )
-            }
+
+                                                    <img
+
+                                                        src={
+                                                            foto.preview
+                                                                ? foto.preview
+                                                                : `data:image/jpeg;base64,${foto.imagen}`
+                                                        }
+
+                                                        alt={
+                                                            `Foto ${index+1}`
+                                                        }
+
+                                                    />
+
+
+
+                                                    <button
+
+                                                        type="button"
+
+                                                        onClick={()=>
+                                                            eliminarFotografia(index)
+                                                        }
+
+                                                    >
+
+                                                        Eliminar
+
+                                                    </button>
+
+
+
+                                                </div>
+
+                                            )
+
+                                        )
+
+                                    )
+                                }
+
+
+                            </div>
+
+
+                        </td>
+
+
+                    </tr>
+
+
+                </tbody>
+
+
+            </table>
 
 
         </section>
+
 
     );
 

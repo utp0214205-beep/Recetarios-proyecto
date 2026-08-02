@@ -5,166 +5,276 @@ function FormDatosGenerales({
 
     return (
 
-        <section className="form-seccion">
+        <section className="form-seccion ficha-edicion">
 
-            <h2>Datos generales</h2>
+            <table className="tabla-datos-edicion">
 
-            <label>
-                Nombre del platillo
-            </label>
+                <tbody>
 
-            <input
-                type="text"
-                name="nombre_platillo"
-                value={datos.nombre_platillo}
-                onChange={onChange}
-                required
-            />
+                    <tr>
 
-            <label>
-                Asignatura
-            </label>
+                        <th>
+                            Asignatura
+                        </th>
 
-            <input
-                type="text"
-                name="asignatura"
-                value={datos.asignatura}
-                onChange={onChange}
-            />
+                        <td>
 
-            <label>
-                Clasificación
-            </label>
+                            <input
+                                type="text"
+                                name="asignatura"
+                                value={datos.asignatura}
+                                onChange={onChange}
+                            />
 
-            <input
-                type="text"
-                name="clasificacion"
-                value={datos.clasificacion}
-                onChange={onChange}
-            />
+                        </td>
 
-            <label>
-                Fecha
-            </label>
+                        <th>
+                            Clasificación
+                        </th>
 
-            <input
-                type="date"
-                name="fecha"
-                value={datos.fecha}
-                onChange={onChange}
-            />
+                        <td>
 
-            <label>
-                Número de práctica
-            </label>
+                            <input
+                                type="text"
+                                name="clasificacion"
+                                value={datos.clasificacion}
+                                onChange={onChange}
+                            />
 
-            <input
-                type="number"
-                name="numero_practica"
-                value={datos.numero_practica}
-                onChange={onChange}
-            />
+                        </td>
 
-            <label>
-                Tiempo de preparación
-            </label>
+                    </tr>
 
-            <input
-                type="text"
-                name="tiempo_preparacion"
-                value={datos.tiempo_preparacion}
-                onChange={onChange}
-            />
+                    <tr>
 
-            <label>
-                Total de producción
-            </label>
+                        <th>
+                            Nombre de la receta/platillo
+                        </th>
 
-            <input
-                type="text"
-                name="total_produccion"
-                value={datos.total_produccion}
-                onChange={onChange}
-            />
+                        <td>
 
-            <label>
-                Número de porciones
-            </label>
+                            <input
+                                type="text"
+                                name="nombre_platillo"
+                                value={datos.nombre_platillo}
+                                onChange={onChange}
+                                required
+                            />
 
-            <input
-                type="number"
-                name="numero_porciones"
-                value={datos.numero_porciones}
-                onChange={onChange}
-            />
+                        </td>
 
-            <label>
-                Cantidad por porción
-            </label>
+                        <th>
+                            Número de práctica
+                        </th>
 
-            <input
-                type="text"
-                name="cantidad_porcion"
-                value={datos.cantidad_porcion}
-                onChange={onChange}
-            />
+                        <td>
 
-            <label>
-                Aporte nutrimental
-            </label>
+                            <input
+                                type="number"
+                                name="numero_practica"
+                                value={datos.numero_practica}
+                                onChange={onChange}
+                            />
 
-            <textarea
-                name="aporte_nutrimental"
-                value={datos.aporte_nutrimental}
-                onChange={onChange}
-                rows={3}
-            />
+                        </td>
 
-            <label>
-                Método y tiempo de conservación
-            </label>
+                    </tr>
 
-            <textarea
-                name="metodo_tiempo_conservacion"
-                value={datos.metodo_tiempo_conservacion}
-                onChange={onChange}
-                rows={3}
-            />
+                    <tr>
 
-            <label>
-                Maridaje
-            </label>
+                        <th>
+                            Fecha
+                        </th>
 
-            <textarea
-                name="maridaje"
-                value={datos.maridaje}
-                onChange={onChange}
-                rows={3}
-            />
+                        <td>
 
-            <label>
-                Costo total
-            </label>
+                            <input
+                                type="date"
+                                name="fecha"
+                                value={datos.fecha}
+                                onChange={onChange}
+                            />
 
-            <input
-                type="number"
-                step="0.01"
-                name="costo_total"
-                value={datos.costo_total}
-                onChange={onChange}
-            />
+                        </td>
 
-            <label>
-                Costo por porción
-            </label>
+                        <th>
+                            Tiempo de preparación
+                        </th>
 
-            <input
-                type="number"
-                step="0.01"
-                name="costo_por_porcion"
-                value={datos.costo_por_porcion}
-                onChange={onChange}
-            />
+                        <td>
+
+                            <input
+                                type="text"
+                                name="tiempo_preparacion"
+                                value={datos.tiempo_preparacion}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+                            Total de la producción en Kg/L
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="total_produccion"
+                                value={datos.total_produccion}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                        <th>
+                            Aporte nutrimental en kcal/porción
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="aporte_nutrimental"
+                                value={datos.aporte_nutrimental}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+                            Número de porciones
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="number"
+                                name="numero_porciones"
+                                value={datos.numero_porciones}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                        <th>
+                            Método y tiempo de conservación
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="metodo_tiempo_conservacion"
+                                value={datos.metodo_tiempo_conservacion}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <th>
+                            Cantidad por porción en Kg/L
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="cantidad_porcion"
+                                value={datos.cantidad_porcion}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                        <th>
+                            Maridaje recomendado
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="maridaje"
+                                value={datos.maridaje}
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+            <div className="costos-edicion">
+
+                <table className="tabla-costos-edicion">
+
+                    <tbody>
+
+                        <tr>
+
+                            <th>
+
+                                Costo de insumos de la receta
+
+                            </th>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    name="costo_total"
+                                    value={datos.costo_total}
+                                    onChange={onChange}
+                                />
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                Costo de insumos por porción
+
+                            </th>
+
+                            <td>
+
+                                <input
+                                    type="number"
+                                    step="0.01"
+                                    name="costo_por_porcion"
+                                    value={datos.costo_por_porcion}
+                                    onChange={onChange}
+                                />
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
 
         </section>
 

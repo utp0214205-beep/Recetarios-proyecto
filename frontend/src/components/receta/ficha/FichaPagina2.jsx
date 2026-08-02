@@ -1,3 +1,5 @@
+import encabezadoFicha from "../../../assets/images/encabezado-ficha.png";
+
 function FichaPagina2({ receta }) {
 
     const fotoPrincipal =
@@ -7,226 +9,414 @@ function FichaPagina2({ receta }) {
 
     return (
 
-        <section className="ficha-pagina">
+    <section className="ficha-pagina">
 
-            <header className="ficha-header">
+        <header className="ficha-header">
 
-                <div className="titulo">
+            <img
+                src={encabezadoFicha}
+                alt="Encabezado"
+                className="encabezado-ficha-img"
+            />
 
-                    <h2>Ficha de Recetario de Alimentos</h2>
+        </header>
 
-                    <h1>Gastronomía</h1>
+        <div className="contenido-ficha">
 
-                </div>
+            <table className="tabla-procedimiento">
 
-            </header>
+                <thead>
 
-            <div className="procedimiento-grid">
+                    <tr>
 
-                <section className="procedimiento">
+                        <th className="titulo-verde">
 
-                    <h3>
-                        TÉCNICAS DE PREPARACIÓN Y PROCEDIMIENTOS
-                    </h3>
+                            TÉCNICAS DE PREPARACIÓN Y PROCEDIMIENTOS
 
-                    <h4>Mise en Place</h4>
+                        </th>
 
-                    <p>
+                        <th className="titulo-verde montaje-header">
 
-                        {receta.procedimiento?.mise_en_place}
+                            MONTAJE Y PRESENTACIÓN
 
-                    </p>
+                        </th>
 
-                    <h4>Instrucciones</h4>
+                    </tr>
 
-                    <p>
+                </thead>
 
-                        {receta.procedimiento?.instrucciones}
+                <tbody>
 
-                    </p>
+                    <tr>
 
-                </section>
+                        <td className="celda-procedimiento">
 
-                <section className="montaje">
+                            <div className="bloque-procedimiento bloque-mise">
 
-                    <h3>
+                                <strong>
 
-                        MONTAJE Y PRESENTACIÓN
+                                    Mise en place
 
-                    </h3>
+                                </strong>
 
-                    {
+                                <p>
 
-                        fotoPrincipal ? (
+                                    {receta.procedimiento?.mise_en_place}
 
-                            <img
-                                src={fotoPrincipal}
-                                alt={receta.nombre_platillo}
-                            />
-
-                        ) : (
-
-                            <div className="sin-foto">
-
-                                Sin fotografía
+                                </p>
 
                             </div>
 
-                        )
+                            <div className="bloque-procedimiento bloque-instrucciones">
 
-                    }
+                                <strong>
 
-                </section>
+                                    Instrucciones
+
+                                </strong>
+
+                                <p>
+
+                                    {receta.procedimiento?.instrucciones}
+
+                                </p>
+
+                            </div>
+
+                            <table className="tabla-tecnicas">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th
+                                            className="titulo-verde"
+                                            colSpan="2"
+                                        >
+
+                                            TÉCNICAS CULINARIAS
+
+                                        </th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Tipos de corte
+
+                                        </th>
+
+                                        <td>
+
+                                            {
+
+                                                receta.tecnica_culinaria
+                                                    ?.tipo_corte
+
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Métodos de cocción
+
+                                        </th>
+
+                                        <td>
+
+                                            {
+
+                                                receta.tecnica_culinaria
+                                                    ?.metodo_coccion
+
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+
+                                        <th>
+
+                                            Técnicas de elaboración
+
+                                        </th>
+
+                                        <td>
+
+                                            {
+
+                                                receta.tecnica_culinaria
+                                                    ?.tecnica_elaboracion
+
+                                            }
+
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </td>
+
+                        <td className="celda-foto">
+
+                            {
+
+                                fotoPrincipal ? (
+
+                                    <img
+                                        src={fotoPrincipal}
+                                        alt={receta.nombre_platillo}
+                                        className="foto-receta"
+                                    />
+
+                                ) : (
+
+                                    <div className="sin-foto">
+
+                                        Sin fotografía
+
+                                    </div>
+
+                                )
+
+                            }
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+
+                    <table className="tabla-equipo2">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+
+                                    Utensilios
+
+                                </th>
+
+                                <th colSpan="2">
+
+                                    Temperaturas
+
+                                </th>
+
+                                <th>
+
+                                    Material extra que el alumno debe traer
+
+                                </th>
+
+                                <th>
+
+                                    Unidades de medición
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+
+                                <td
+                                    rowSpan="2"
+                                    className="celda-grande"
+                                >
+
+                                    {
+
+                                        receta.equipo
+                                            ?.utensilios
+
+                                    }
+
+                                </td>
+
+                                <th>
+
+                                    Cocción
+
+                                </th>
+
+                                <td>
+
+                                    {
+
+                                        receta.equipo
+                                            ?.temperatura_coccion
+
+                                    }
+
+                                </td>
+
+                                <td
+                                    rowSpan="2"
+                                    className="celda-grande"
+                                >
+
+                                    {
+
+                                        receta.equipo
+                                            ?.material_extra
+
+                                    }
+
+                                </td>
+
+                                <td
+                                    rowSpan="2"
+                                    className="celda-grande"
+                                >
+
+                                    {
+
+                                        receta.equipo
+                                            ?.unidades_medicion
+
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                            <tr>
+
+                                <th>
+
+                                    Servicio
+
+                                </th>
+
+                                <td>
+
+                                    {
+
+                                        receta.equipo
+                                            ?.temperatura_servicio
+
+                                    }
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                                    <table className="tabla-informacion">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+
+                                HISTORIA / ORIGEN DEL PLATILLO
+
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td className="historia">
+
+                                {
+
+                                    receta.informacion_complementaria
+                                        ?.historia
+
+                                }
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                CONCLUSIONES
+
+                            </th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td className="conclusiones">
+
+                                {
+
+                                    receta.informacion_complementaria
+                                        ?.conclusiones
+
+                                }
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+
+                            <th>
+
+                                REFERENCIAS
+
+                            </th>
+
+                        </tr>
+
+                        <tr>
+
+                            <td className="referencias">
+
+                                {
+
+                                    receta.informacion_complementaria
+                                        ?.referencias
+
+                                }
+
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
 
             </div>
-
-
-            <table className="tabla-tecnica">
-
-                <tbody>
-
-                    <tr>
-
-                        <th>Tipos de corte</th>
-
-                        <td>
-
-                            {receta.tecnica_culinaria?.tipo_corte}
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <th>Métodos de cocción</th>
-
-                        <td>
-
-                            {receta.tecnica_culinaria?.metodo_coccion}
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <th>Técnicas de elaboración</th>
-
-                        <td>
-
-                            {receta.tecnica_culinaria?.tecnica_elaboracion}
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-
-
-            <table className="tabla-equipo">
-
-                <tbody>
-
-                    <tr>
-
-                        <th>Utensilios</th>
-
-                        <th>Temperatura cocción</th>
-
-                        <th>Material extra</th>
-
-                        <th>Unidades de medición</th>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>
-
-                            {receta.equipo?.utensilios}
-
-                        </td>
-
-                        <td>
-
-                            <strong>Cocción:</strong>
-
-                            <br />
-
-                            {receta.equipo?.temperatura_coccion}
-
-                            <br /><br />
-
-                            <strong>Servicio:</strong>
-
-                            <br />
-
-                            {receta.equipo?.temperatura_servicio}
-
-                        </td>
-
-                        <td>
-
-                            {receta.equipo?.material_extra}
-
-                        </td>
-
-                        <td>
-
-                            {receta.equipo?.unidades_medicion}
-
-                        </td>
-
-                    </tr>
-
-                </tbody>
-
-            </table>
-
-
-            <section className="informacion">
-
-                <h3>
-
-                    Historia / Origen
-
-                </h3>
-
-                <p>
-
-                    {receta.informacion_complementaria?.historia}
-
-                </p>
-
-                <h3>
-
-                    Conclusiones
-
-                </h3>
-
-                <p>
-
-                    {receta.informacion_complementaria?.conclusiones}
-
-                </p>
-
-                <h3>
-
-                    Referencias
-
-                </h3>
-
-                <p>
-
-                    {receta.informacion_complementaria?.referencias}
-
-                </p>
-
-            </section>
 
         </section>
 

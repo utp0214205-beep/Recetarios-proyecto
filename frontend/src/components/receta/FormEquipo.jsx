@@ -5,69 +5,140 @@ function FormEquipo({
 
     return (
 
-        <section className="form-seccion">
+        <section className="form-seccion ficha-edicion">
 
-            <h2>Equipo y utensilios</h2>
 
-            <label>
-                Utensilios
-            </label>
+            <table className="tabla-equipo-edicion">
 
-            <textarea
-                name="utensilios"
-                value={equipo.utensilios}
-                onChange={onChange}
-                rows={4}
-            />
+                <tbody>
 
-            <label>
-                Temperatura de cocción
-            </label>
 
-            <input
-                type="text"
-                name="temperatura_coccion"
-                value={equipo.temperatura_coccion}
-                onChange={onChange}
-            />
+                    <tr>
 
-            <label>
-                Temperatura de servicio
-            </label>
+                        <th>
+                            Utensilios
+                        </th>
 
-            <input
-                type="text"
-                name="temperatura_servicio"
-                value={equipo.temperatura_servicio}
-                onChange={onChange}
-            />
+                        <td>
 
-            <label>
-                Material extra
-            </label>
+                            <textarea
+                                name="utensilios"
+                                value={
+                                    equipo.utensilios || ""
+                                }
+                                onChange={onChange}
+                                rows={5}
+                            />
 
-            <textarea
-                name="material_extra"
-                value={equipo.material_extra}
-                onChange={onChange}
-                rows={3}
-            />
+                        </td>
 
-            <label>
-                Unidades de medición
-            </label>
+                    </tr>
 
-            <textarea
-                name="unidades_medicion"
-                value={equipo.unidades_medicion}
-                onChange={onChange}
-                rows={3}
-            />
+
+
+                    <tr>
+
+                        <th>
+                            Temperatura de cocción
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="temperatura_coccion"
+                                value={
+                                    equipo.temperatura_coccion || ""
+                                }
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Temperatura de servicio
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="temperatura_servicio"
+                                value={
+                                    equipo.temperatura_servicio || ""
+                                }
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Material extra
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="material_extra"
+                                value={
+                                    equipo.material_extra || ""
+                                }
+                                onChange={onChange}
+                                rows={4}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Unidades de medición
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="unidades_medicion"
+                                value={
+                                    equipo.unidades_medicion || ""
+                                }
+                                onChange={onChange}
+                                rows={4}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+
+
+            </table>
+
 
         </section>
 
     );
 
 }
+
 
 export default FormEquipo;

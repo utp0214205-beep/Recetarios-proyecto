@@ -18,7 +18,7 @@
 
     width:297mm;
 
-    height:212mm;
+    height:213.5mm;
 
     background:#fff;
 
@@ -52,7 +52,7 @@
 
     width:100%;
 
-    height:100px;
+    height:120px;
 
     flex-shrink:0;
 
@@ -367,24 +367,76 @@
     width:90px;
 
 }
-
 /* ===========================================
-   SEGUNDA FICHA
+   PÁGINA 2
 =========================================== */
 
-.procedimiento-grid{
+.tabla-procedimiento{
 
-    display:grid;
+    width:100%;
 
-    grid-template-columns:2fr 1fr;
+    border-collapse:collapse;
 
-    gap:25px;
+    table-layout:fixed;
 
-    margin-bottom:25px;
+    margin:0;
 
 }
 
-.montaje img{
+.tabla-procedimiento th,
+.tabla-procedimiento td{
+
+    border:1px solid #000;
+
+}
+
+.tabla-procedimiento th:first-child{
+
+    width:70%;
+
+}
+
+.tabla-procedimiento th:last-child{
+
+    width:30%;
+
+}
+
+.titulo-verde{
+
+    background:#99cc00;
+
+    text-align:center;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+    height:24px;
+
+}
+
+.celda-procedimiento{
+
+    height:300px;
+
+    padding:0;
+
+    vertical-align:top;
+
+}
+
+.celda-foto{
+
+    height:300px;
+
+    padding:5px;
+
+    vertical-align:top;
+
+}
+
+.foto-receta{
 
     width:100%;
 
@@ -392,81 +444,697 @@
 
     object-fit:cover;
 
-    border:.7px solid #000;
+    border:1px solid #000;
 
 }
 
-.tabla-tecnica,
-.tabla-equipo{
+.sin-foto{
+
+    width:100%;
+
+    height:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:1px solid #000;
+
+    color:#666;
+
+    font-style:italic;
+
+}
+/* ===========================================
+   BLOQUES DEL PROCEDIMIENTO
+=========================================== */
+
+.bloque-procedimiento{
+
+    padding:0px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.bloque-mise{
+
+    height:120px;
+
+    border-bottom:1px solid #000;
+
+}
+
+.bloque-instrucciones{
+
+    height:120px;
+
+}
+
+.subtitulo-bloque{
+
+    background:#f5f5f5;
+
+    border-bottom:1px solid #000;
+
+    padding:5px 8px;
+
+    font-weight:bold;
+
+    font-size:12px;
+
+}
+
+.contenido-bloque{
+
+    flex:1;
+
+    padding:8px 10px;
+
+    font-size:12px;
+
+    line-height:1.45;
+
+    white-space:pre-wrap;
+
+    overflow:hidden;
+
+    text-align:justify;
+
+}
+
+/*===========================================
+    TABLA TÉCNICAS
+===========================================*/
+
+.tabla-tecnicas{
 
     width:100%;
 
     border-collapse:collapse;
 
-    margin-top:20px;
+    table-layout:fixed;
+
+    margin-top:8;
+
+    font-size:12px;
 
 }
 
-.tabla-tecnica th,
-.tabla-equipo th{
+.tabla-tecnicas th,
+.tabla-tecnicas td{
+
+    border:1px solid #000;
+
+    padding:0 8px;
+
+    height:22px;
+
+    vertical-align:middle;
+
+}
+
+.tabla-tecnicas tbody th{
+
+    width:38%;
+
+    background:#fff;
+
+    text-align:left;
+
+    font-weight:bold;
+
+}
+
+.tabla-tecnicas tbody td{
+
+    width:62%;
+
+    text-align:center;
+
+}
+/*===========================================
+    TABLA EQUIPO
+===========================================*/
+
+.tabla-equipo2{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:fixed;
+
+    margin:0;
+
+    font-size:12px;
+
+}
+
+.tabla-equipo2 th,
+.tabla-equipo2 td{
+
+    border:1px solid #000;
+
+    padding:5px;
+
+    vertical-align:top;
+
+}
+
+.tabla-equipo2 thead th{
+
+    background:#fff;
+
+    font-weight:bold;
+
+    text-align:left;
+
+}
+
+.tabla-equipo2 thead th:nth-child(1){
+
+    width:38%;
+
+}
+
+.tabla-equipo2 thead th:nth-child(2){
+
+    width:18%;
+
+}
+
+.tabla-equipo2 thead th:nth-child(3){
+
+    width:27%;
+
+}
+
+.tabla-equipo2 thead th:nth-child(4){
+
+    width:17%;
+
+}
+
+.tabla-equipo2 tbody td{
+
+    height:40px;
+
+}
+/* ===========================================
+   INFORMACIÓN COMPLEMENTARIA
+=========================================== */
+
+.tabla-informacion{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:fixed;
+
+    margin:0;
+
+}
+
+.tabla-informacion th{
 
     background:#99cc00;
 
-    color:#000;
+    border:1px solid #000;
 
-}
+    text-align:left;
 
-.tabla-tecnica th,
-.tabla-tecnica td,
-.tabla-equipo th,
-.tabla-equipo td{
+    font-weight:bold;
 
-    border:.7px solid #000;
-
-    padding:8px;
+    padding:5px 8px;
 
     font-size:12px;
 
-}
-
-.informacion{
-
-    margin-top:25px;
+    height:28px;
 
 }
 
-.informacion h3{
+.tabla-informacion td{
 
-    margin-bottom:8px;
+    border:1px solid #000;
 
-    font-size:13px;
-
-    color:#000;
-
-}
-
-.informacion p{
-
-    line-height:1.35;
+    padding:8px 10px;
 
     font-size:12px;
 
+    line-height:1.45;
+
+    vertical-align:top;
+
+    white-space:pre-wrap;
+
 }
-.ficha-pagina{
 
-    display:flex;
-    flex-direction:column;
+/* ===========================================
+   ALTURAS DE CADA BLOQUE
+=========================================== */
 
-    justify-content:space-between;
+.historia{
 
-    width:297mm;
-    height:210mm;
+    height:40px;
+
+}
+
+.conclusiones{
+
+    height:40px;
+
+}
+
+.referencias{
+
+    height:40px;
+
+}
+
+/* ===========================================
+   AJUSTES DE TEXTO
+=========================================== */
+
+.historia,
+.conclusiones,
+.referencias{
+
+    text-align:justify;
 
     overflow:hidden;
 
 }
-.contenedor-ingredientes{
 
-    flex:1;
+/* ===========================================
+   AJUSTES GENERALES DE LA PÁGINA 2
+=========================================== */
+
+.tabla-procedimiento,
+.tabla-tecnicas,
+.tabla-equipo2,
+.tabla-informacion{
+
+    margin:0;
+
+}
+
+.tabla-procedimiento + .tabla-tecnicas{
+
+    margin-top:0;
+
+}
+
+.tabla-tecnicas + .tabla-equipo2{
+
+    margin-top:0;
+
+}
+
+.tabla-equipo2 + .tabla-informacion{
+
+    margin-top:0;
+
+}
+
+.tabla-procedimiento,
+.tabla-tecnicas,
+.tabla-equipo2,
+.tabla-informacion{
+
+    width:100%;
+
+}
+
+.tabla-procedimiento td,
+.tabla-tecnicas td,
+.tabla-equipo2 td,
+.tabla-informacion td{
+
+    word-break:break-word;
+
+}
+
+/* ===========================================
+   IMPRESIÓN
+=========================================== */
+
+@media print{
+
+    .tabla-procedimiento,
+    .tabla-tecnicas,
+    .tabla-equipo2,
+    .tabla-informacion{
+
+        page-break-inside:avoid;
+
+    }
+
+    .foto-receta{
+
+        print-color-adjust:exact;
+
+        -webkit-print-color-adjust:exact;
+
+    }
+
+}
+/* ===========================================
+   FICHAS DE EDICION
+=========================================== */
+
+
+.ficha-pagina-edicion {
+
+    width:100%;
+
+    background:white;
+
+    margin-bottom:40px;
+
+}
+
+
+
+.contenido-ficha-edicion {
+
+    width:100%;
+
+}
+
+
+
+
+
+/* Inputs generales dentro de ficha */
+
+
+.ficha-pagina-edicion input,
+.ficha-pagina-edicion textarea {
+
+
+    font-family:inherit;
+
+    font-size:13px;
+
+    border:none;
+
+    outline:none;
+
+    background:transparent;
+
+    width:100%;
+
+    resize:none;
+
+}
+
+
+
+.ficha-pagina-edicion input:focus,
+.ficha-pagina-edicion textarea:focus {
+
+    background:#fff6c7;
+
+}
+
+
+
+
+
+/* ===========================================
+   PAGINA 2 PROCEDIMIENTO
+=========================================== */
+
+
+.tabla-procedimiento-edicion {
+
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:fixed;
+
+}
+
+
+
+.tabla-procedimiento-edicion th,
+.tabla-procedimiento-edicion td {
+
+
+    border:1px solid #000;
+
+    vertical-align:top;
+
+    padding:5px;
+
+}
+
+
+
+.tabla-procedimiento-edicion th {
+
+
+    font-size:12px;
+
+    text-align:center;
+
+}
+
+
+
+.celda-procedimiento-edicion {
+
+
+    width:65%;
+
+}
+
+
+
+.celda-foto-edicion {
+
+
+    width:35%;
+
+    text-align:center;
+
+}
+
+
+
+
+
+.celda-procedimiento-edicion strong {
+
+
+    display:block;
+
+    margin-top:5px;
+
+    font-size:13px;
+
+}
+
+
+
+
+.celda-procedimiento-edicion textarea {
+
+
+    min-height:80px;
+
+    border:1px solid #000;
+
+    padding:5px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+/* ===========================================
+   TECNICAS CULINARIAS
+=========================================== */
+
+
+.tabla-tecnicas-edicion {
+
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:10px;
+
+}
+
+
+
+.tabla-tecnicas-edicion th,
+.tabla-tecnicas-edicion td {
+
+
+    border:1px solid #000;
+
+    padding:5px;
+
+}
+
+
+
+.tabla-tecnicas-edicion th {
+
+
+    width:35%;
+
+}
+
+
+
+
+
+/* ===========================================
+   FOTOGRAFIA
+=========================================== */
+
+
+.foto-receta-edicion {
+
+
+    width:100%;
+
+    max-height:400px;
+
+    object-fit:contain;
+
+    margin-top:15px;
+
+}
+
+
+
+
+
+/* ===========================================
+   EQUIPO
+=========================================== */
+
+
+.tabla-equipo-edicion {
+
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+}
+
+
+
+.tabla-equipo-edicion th,
+.tabla-equipo-edicion td {
+
+
+    border:1px solid #000;
+
+    padding:5px;
+
+    vertical-align:middle;
+
+}
+
+
+
+.tabla-equipo-edicion textarea {
+
+
+    min-height:80px;
+
+}
+
+
+
+
+
+/* ===========================================
+   INFORMACION FINAL
+=========================================== */
+
+
+.tabla-informacion-edicion {
+
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:15px;
+
+}
+
+
+
+.tabla-informacion-edicion th,
+.tabla-informacion-edicion td {
+
+
+    border:1px solid #000;
+
+    padding:5px;
+
+}
+
+
+
+.tabla-informacion-edicion th {
+
+
+    text-align:center;
+
+    font-size:13px;
+
+}
+
+
+
+.tabla-informacion-edicion textarea {
+
+
+    min-height:120px;
+
+}
+
+
+
+
+
+/* ===========================================
+   BOTON GUARDAR
+=========================================== */
+
+
+.nueva-receta > form > button {
+
+
+    margin:25px auto;
+
+    display:block;
+
+    padding:12px 35px;
+
+    cursor:pointer;
 
 }

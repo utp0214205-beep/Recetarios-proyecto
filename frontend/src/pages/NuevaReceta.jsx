@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import encabezadoFicha from "../assets/images/encabezado-ficha.png";
 import {
     crearReceta,
     obtenerDetalleReceta,
@@ -8,14 +8,13 @@ import {
 } from "../services/recetaService";
 
 import "../assets/styles/nuevaReceta.css";
+import "../assets/styles/fichaReceta.css";
 
-import FormDatosGenerales from "../components/receta/FormDatosGenerales";
-import FormIngredientes from "../components/receta/FormIngredientes";
-import FormProcedimiento from "../components/receta/FormProcedimiento";
-import FormTecnicaCulinaria from "../components/receta/FormTecnicaCulinaria";
-import FormEquipo from "../components/receta/FormEquipo";
-import FormInformacionComplementaria from "../components/receta/FormInformacionComplementaria";
-import FormFotografias from "../components/receta/FormFotografias";
+import FichaEdicionPagina1 
+from "../components/receta/ficha-edicion/FichaEdicionPagina1";
+import FichaEdicionPagina2 
+from "../components/receta/ficha-edicion/FichaEdicionPagina2";
+
 
 function NuevaReceta() {
 
@@ -314,66 +313,87 @@ function NuevaReceta() {
 
     return (
 
-        <div className="nueva-receta">
+    <div className="nueva-receta">
 
-            <h1>
-                {editando ? "Editar receta" : "Nueva receta"}
-            </h1>
 
-            <p>
-                Completa la información de la receta.
-            </p>
+        <h1>
+            {editando ? "Editar receta" : "Nueva receta"}
+        </h1>
 
-            <form onSubmit={guardar}>
 
-                <FormDatosGenerales
-                    datos={datosReceta}
-                    onChange={manejarCambio}
-                />
+        <p>
+            Completa la información de la receta.
+        </p>
 
-                <FormIngredientes
-                    ingredientes={datosReceta.ingredientes}
-                    setIngredientes={actualizarIngredientes}
-                />
 
-                <FormProcedimiento
-                    procedimiento={datosReceta.procedimiento}
-                    onChange={actualizarProcedimiento}
-                />
 
-                <FormTecnicaCulinaria
-                    tecnica={datosReceta.tecnica_culinaria}
-                    onChange={actualizarTecnica}
-                />
+        <form onSubmit={guardar}>
 
-                <FormEquipo
-                    equipo={datosReceta.equipo}
-                    onChange={actualizarEquipo}
-                />
 
-                <FormInformacionComplementaria
-                    informacion={datosReceta.informacion_complementaria}
-                    onChange={actualizarInformacion}
-                />
+            <FichaEdicionPagina1
 
-                <FormFotografias
-                    fotografias={datosReceta.fotografias}
-                    setFotografias={actualizarFotografias}
-                />
+                datosReceta={datosReceta}
 
-                <button type="submit">
+                manejarCambio={manejarCambio}
 
-                    {editando
+                actualizarIngredientes={
+                    actualizarIngredientes
+                }
+
+                actualizarInformacion={
+                    actualizarInformacion
+                }
+
+            />
+
+            <FichaEdicionPagina2
+
+                datosReceta={datosReceta}
+
+                actualizarProcedimiento={
+                    actualizarProcedimiento
+                }
+
+                actualizarTecnica={
+                    actualizarTecnica
+                }
+
+                actualizarEquipo={
+                    actualizarEquipo
+                }
+
+                actualizarFotografias={
+                    actualizarFotografias
+                }
+
+                actualizarInformacion={
+                    actualizarInformacion
+                }
+
+            />
+
+
+
+            <button type="submit">
+
+
+                {
+                    editando
                         ? "Guardar cambios"
-                        : "Guardar receta"}
+                        : "Guardar receta"
+                }
 
-                </button>
 
-            </form>
+            </button>
 
-        </div>
 
-    );
+
+        </form>
+
+
+    </div>
+
+);
 
 }
 

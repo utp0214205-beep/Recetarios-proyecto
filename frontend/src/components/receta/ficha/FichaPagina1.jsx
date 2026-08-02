@@ -45,7 +45,7 @@ function FichaPagina1({ receta }) {
 
                         <tr>
 
-                            <th>Nombre del platillo</th>
+                            <th>Nombre de la receta/platillo</th>
 
                             <td>{receta.nombre_platillo}</td>
 
@@ -67,7 +67,7 @@ function FichaPagina1({ receta }) {
                                 }
                             </td>
 
-                            <th>Tiempo preparación</th>
+                            <th>Tiempo de preparación</th>
 
                             <td>{receta.tiempo_preparacion}</td>
 
@@ -75,11 +75,11 @@ function FichaPagina1({ receta }) {
 
                         <tr>
 
-                            <th>Total producción</th>
+                            <th>Total de la producción en Kg/L</th>
 
                             <td>{receta.total_produccion}</td>
 
-                            <th>Aporte nutrimental</th>
+                            <th>Aporte nutrimental en kcal/porcion</th>
 
                             <td>{receta.aporte_nutrimental}</td>
 
@@ -87,11 +87,11 @@ function FichaPagina1({ receta }) {
 
                         <tr>
 
-                            <th>Porciones</th>
+                            <th>Número de porciones</th>
 
                             <td>{receta.numero_porciones}</td>
 
-                            <th>Conservación</th>
+                            <th>Método y tiempo de conservación</th>
 
                             <td>{receta.metodo_tiempo_conservacion}</td>
 
@@ -99,11 +99,11 @@ function FichaPagina1({ receta }) {
 
                         <tr>
 
-                            <th>Cantidad por porción</th>
+                            <th>Cantidad por porción en Kg/L</th>
 
                             <td>{receta.cantidad_porcion}</td>
 
-                            <th>Maridaje</th>
+                            <th>Maridaje recomendado</th>
 
                             <td>{receta.maridaje}</td>
 
@@ -231,7 +231,7 @@ function FichaPagina1({ receta }) {
 
                         <strong>
 
-                            Buenas Prácticas de Higiene
+                            Buenas prácticas de higiene:
 
                         </strong>
 

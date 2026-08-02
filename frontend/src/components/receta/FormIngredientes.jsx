@@ -1,206 +1,476 @@
-import { useState } from "react";
-
 function FormIngredientes({
     ingredientes,
     setIngredientes
 }) {
 
-    const [nuevoIngrediente, setNuevoIngrediente] = useState({
-        nombre: "",
-        cantidad: "",
-        unidad: "",
-        costo_unitario: "",
-        rendimiento: ""
-    });
 
-    const cambiarCampo = (e) => {
+    const FILAS = 17;
 
-        const { name, value } = e.target;
 
-        setNuevoIngrediente((prev) => ({
-            ...prev,
-            [name]: value
-        }));
 
-    };
+    const cambiarIngrediente = (
+        index,
+        campo,
+        valor
+    ) => {
 
-    const agregarIngrediente = () => {
+
+        const nuevos = [...ingredientes];
+
+
+        nuevos[index][campo] = valor;
+
+
 
         if (
-            !nuevoIngrediente.nombre.trim() ||
-            !nuevoIngrediente.cantidad ||
-            !nuevoIngrediente.unidad
+            campo === "cantidad" ||
+            campo === "costo_unitario"
         ) {
-            alert("Completa al menos el nombre, cantidad y unidad.");
-            return;
+
+
+            const cantidad =
+                Number(nuevos[index].cantidad) || 0;
+
+
+            const costo =
+                Number(nuevos[index].costo_unitario) || 0;
+
+
+
+            nuevos[index].importe =
+                (cantidad * costo).toFixed(2);
+
+
         }
 
-        const cantidad = Number(nuevoIngrediente.cantidad) || 0;
-        const costo = Number(nuevoIngrediente.costo_unitario) || 0;
 
-        const ingrediente = {
-            ...nuevoIngrediente,
-            importe: (cantidad * costo).toFixed(2)
-        };
-
-        setIngredientes([
-            ...ingredientes,
-            ingrediente
-        ]);
-
-        setNuevoIngrediente({
-            nombre: "",
-            cantidad: "",
-            unidad: "",
-            costo_unitario: "",
-            rendimiento: ""
-        });
-
-    };
-
-    const eliminarIngrediente = (index) => {
-
-        const nuevos = ingredientes.filter(
-            (_, i) => i !== index
-        );
 
         setIngredientes(nuevos);
 
+
     };
 
-    return (
 
-        <section className="form-seccion">
 
-            <h2>Ingredientes</h2>
 
-            <div className="ingrediente-form">
+    const agregarFila = () => {
 
-                <input
-                    type="text"
-                    name="nombre"
-                    placeholder="Ingrediente"
-                    value={nuevoIngrediente.nombre}
-                    onChange={cambiarCampo}
-                />
 
-                <input
-                    type="number"
-                    name="cantidad"
-                    placeholder="Cantidad"
-                    value={nuevoIngrediente.cantidad}
-                    onChange={cambiarCampo}
-                />
+        setIngredientes([
 
-                <input
-                    type="text"
-                    name="unidad"
-                    placeholder="Unidad"
-                    value={nuevoIngrediente.unidad}
-                    onChange={cambiarCampo}
-                />
-
-                <input
-                    type="number"
-                    step="0.01"
-                    name="costo_unitario"
-                    placeholder="Costo unitario"
-                    value={nuevoIngrediente.costo_unitario}
-                    onChange={cambiarCampo}
-                />
-
-                <input
-                    type="text"
-                    name="rendimiento"
-                    placeholder="Rendimiento (%)"
-                    value={nuevoIngrediente.rendimiento}
-                    onChange={cambiarCampo}
-                />
-
-                <button
-                    type="button"
-                    onClick={agregarIngrediente}
-                >
-                    + Agregar
-                </button>
-
-            </div>
+            ...ingredientes,
 
             {
-                ingredientes.length > 0 && (
-
-                    <table className="tabla-ingredientes">
-
-                        <thead>
-
-                            <tr>
-
-                                <th>Ingrediente</th>
-
-                                <th>Cantidad</th>
-
-                                <th>Unidad</th>
-
-                                <th>Costo</th>
-
-                                <th>Rendimiento</th>
-
-                                <th>Importe</th>
-
-                                <th></th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody>
-
-                            {
-                                ingredientes.map((ingrediente, index) => (
-
-                                    <tr key={index}>
-
-                                        <td>{ingrediente.nombre}</td>
-
-                                        <td>{ingrediente.cantidad}</td>
-
-                                        <td>{ingrediente.unidad}</td>
-
-                                        <td>${ingrediente.costo_unitario}</td>
-
-                                        <td>{ingrediente.rendimiento}</td>
-
-                                        <td>${ingrediente.importe}</td>
-
-                                        <td>
-
-                                            <button
-                                                type="button"
-                                                onClick={() =>
-                                                    eliminarIngrediente(index)
-                                                }
-                                            >
-                                                Eliminar
-                                            </button>
-
-                                        </td>
-
-                                    </tr>
-
-                                ))
-                            }
-
-                        </tbody>
-
-                    </table>
-
-                )
+                nombre: "",
+                cantidad: "",
+                unidad: "",
+                costo_unitario: "",
+                rendimiento: "",
+                importe: ""
             }
 
-        </section>
+        ]);
+
+
+    };
+
+
+
+
+    const eliminarIngrediente = (index) => {
+
+
+        const nuevos = ingredientes.filter(
+
+            (_, i) => i !== index
+
+        );
+
+
+        setIngredientes(nuevos);
+
+
+    };
+
+
+
+
+    const filasVacias = Math.max(
+
+        0,
+
+        FILAS - ingredientes.length
 
     );
 
+
+
+
+    return (
+
+
+        <section className="form-seccion ficha-edicion">
+
+
+
+            <table className="tabla-ingredientes-edicion">
+
+
+
+                <thead>
+
+
+                    <tr>
+
+
+                        <th>
+                            CANT.
+                        </th>
+
+
+                        <th>
+                            UNIDAD
+                        </th>
+
+
+                        <th>
+                            MATERIA PRIMA
+                        </th>
+
+
+                        <th>
+                            COSTO UNITARIO
+                        </th>
+
+
+                        <th>
+                            % DE RENDIMIENTO
+                        </th>
+
+
+                        <th>
+                            IMPORTE
+                        </th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+
+
+                <tbody>
+
+
+
+                    {
+                        ingredientes.map(
+
+                            (ingrediente,index)=>(
+
+
+                                <tr key={index}>
+
+
+                                    <td>
+
+
+                                        <input
+
+                                            type="number"
+
+                                            value={
+                                                ingrediente.cantidad || ""
+                                            }
+
+                                            onChange={(e)=>
+
+                                                cambiarIngrediente(
+
+                                                    index,
+
+                                                    "cantidad",
+
+                                                    e.target.value
+
+                                                )
+
+                                            }
+
+                                        />
+
+
+                                    </td>
+
+
+
+
+
+                                    <td>
+
+
+                                        <input
+
+                                            type="text"
+
+                                            value={
+                                                ingrediente.unidad || ""
+                                            }
+
+                                            onChange={(e)=>
+
+                                                cambiarIngrediente(
+
+                                                    index,
+
+                                                    "unidad",
+
+                                                    e.target.value
+
+                                                )
+
+                                            }
+
+                                        />
+
+
+                                    </td>
+
+
+
+
+
+                                    <td>
+
+
+                                        <input
+
+                                            type="text"
+
+                                            value={
+                                                ingrediente.nombre || ""
+                                            }
+
+                                            onChange={(e)=>
+
+                                                cambiarIngrediente(
+
+                                                    index,
+
+                                                    "nombre",
+
+                                                    e.target.value
+
+                                                )
+
+                                            }
+
+                                        />
+
+
+                                    </td>
+
+
+
+
+
+                                    <td>
+
+
+                                        <input
+
+                                            type="number"
+
+                                            step="0.01"
+
+                                            value={
+                                                ingrediente.costo_unitario || ""
+                                            }
+
+                                            onChange={(e)=>
+
+                                                cambiarIngrediente(
+
+                                                    index,
+
+                                                    "costo_unitario",
+
+                                                    e.target.value
+
+                                                )
+
+                                            }
+
+                                        />
+
+
+                                    </td>
+
+
+
+
+
+                                    <td>
+
+
+                                        <input
+
+                                            type="text"
+
+                                            value={
+                                                ingrediente.rendimiento || ""
+                                            }
+
+                                            onChange={(e)=>
+
+                                                cambiarIngrediente(
+
+                                                    index,
+
+                                                    "rendimiento",
+
+                                                    e.target.value
+
+                                                )
+
+                                            }
+
+                                        />
+
+
+                                    </td>
+
+
+
+
+
+                                    <td className="celda-importe">
+
+
+                                        <input
+
+                                            type="text"
+
+                                            value={
+                                                ingrediente.importe
+                                                    ? `$ ${ingrediente.importe}`
+                                                    : ""
+                                            }
+
+                                            readOnly
+
+                                        />
+
+
+
+                                        <button
+
+                                            type="button"
+
+                                            className="btn-eliminar-fila"
+
+                                            onClick={()=>
+
+                                                eliminarIngrediente(index)
+
+                                            }
+
+                                        >
+
+                                            ×
+
+                                        </button>
+
+
+
+                                    </td>
+
+
+
+                                </tr>
+
+
+                            )
+
+                        )
+                    }
+
+
+
+
+
+                    {
+                        Array.from({
+
+                            length: filasVacias
+
+                        }).map((_,i)=>(
+
+
+                            <tr key={`vacia-${i}`}>
+
+
+
+                                <td></td>
+
+                                <td></td>
+
+                                <td></td>
+
+                                <td></td>
+
+                                <td></td>
+
+                                <td></td>
+
+
+
+                            </tr>
+
+
+                        ))
+                    }
+
+
+
+
+                </tbody>
+
+
+
+
+            </table>
+
+
+
+
+
+            <button
+
+                type="button"
+
+                className="btn-agregar-fila"
+
+                onClick={agregarFila}
+
+            >
+
+                + Agregar ingrediente
+
+            </button>
+
+
+
+
+        </section>
+
+
+    );
+
+
 }
+
 
 export default FormIngredientes;

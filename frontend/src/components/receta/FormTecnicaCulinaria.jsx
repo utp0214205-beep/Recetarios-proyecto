@@ -5,47 +5,94 @@ function FormTecnicaCulinaria({
 
     return (
 
-        <section className="form-seccion">
+        <section className="form-seccion ficha-edicion">
 
-            <h2>Técnica culinaria</h2>
 
-            <label>
-                Tipo de corte
-            </label>
+            <table className="tabla-tecnica-edicion">
 
-            <input
-                type="text"
-                name="tipo_corte"
-                value={tecnica.tipo_corte}
-                onChange={onChange}
-            />
+                <tbody>
 
-            <label>
-                Método de cocción
-            </label>
 
-            <input
-                type="text"
-                name="metodo_coccion"
-                value={tecnica.metodo_coccion}
-                onChange={onChange}
-            />
+                    <tr>
 
-            <label>
-                Técnica de elaboración
-            </label>
+                        <th>
+                            Tipo de corte
+                        </th>
 
-            <textarea
-                name="tecnica_elaboracion"
-                value={tecnica.tecnica_elaboracion}
-                onChange={onChange}
-                rows={5}
-            />
+                        <td>
+
+                            <input
+                                type="text"
+                                name="tipo_corte"
+                                value={
+                                    tecnica.tipo_corte || ""
+                                }
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Método de cocción
+                        </th>
+
+                        <td>
+
+                            <input
+                                type="text"
+                                name="metodo_coccion"
+                                value={
+                                    tecnica.metodo_coccion || ""
+                                }
+                                onChange={onChange}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Técnica de elaboración
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="tecnica_elaboracion"
+                                value={
+                                    tecnica.tecnica_elaboracion || ""
+                                }
+                                onChange={onChange}
+                                rows={7}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+
+
+            </table>
+
 
         </section>
 
     );
 
 }
+
 
 export default FormTecnicaCulinaria;

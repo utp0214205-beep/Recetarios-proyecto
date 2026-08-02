@@ -5,58 +5,117 @@ function FormInformacionComplementaria({
 
     return (
 
-        <section className="form-seccion">
+        <section className="form-seccion ficha-edicion">
 
-            <h2>Información complementaria</h2>
 
-            <label>
-                Historia
-            </label>
+            <table className="tabla-informacion-edicion">
 
-            <textarea
-                name="historia"
-                value={informacion.historia}
-                onChange={onChange}
-                rows={4}
-            />
+                <tbody>
 
-            <label>
-                Conclusiones
-            </label>
 
-            <textarea
-                name="conclusiones"
-                value={informacion.conclusiones}
-                onChange={onChange}
-                rows={4}
-            />
+                    <tr>
 
-            <label>
-                Buenas prácticas
-            </label>
+                        <th>
+                            Historia
+                        </th>
 
-            <textarea
-                name="buenas_practicas"
-                value={informacion.buenas_practicas}
-                onChange={onChange}
-                rows={4}
-            />
+                        <td>
 
-            <label>
-                Referencias bibliográficas
-            </label>
+                            <textarea
+                                name="historia"
+                                value={
+                                    informacion.historia || ""
+                                }
+                                onChange={onChange}
+                                rows={6}
+                            />
 
-            <textarea
-                name="referencias"
-                value={informacion.referencias}
-                onChange={onChange}
-                rows={4}
-            />
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Buenas prácticas de higiene
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="buenas_practicas"
+                                value={
+                                    informacion.buenas_practicas || ""
+                                }
+                                onChange={onChange}
+                                rows={6}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Conclusiones
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="conclusiones"
+                                value={
+                                    informacion.conclusiones || ""
+                                }
+                                onChange={onChange}
+                                rows={6}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Referencias bibliográficas
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="referencias"
+                                value={
+                                    informacion.referencias || ""
+                                }
+                                onChange={onChange}
+                                rows={6}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+
+
+            </table>
+
 
         </section>
 
     );
 
 }
+
 
 export default FormInformacionComplementaria;

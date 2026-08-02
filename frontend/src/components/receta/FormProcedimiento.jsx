@@ -5,36 +5,71 @@ function FormProcedimiento({
 
     return (
 
-        <section className="form-seccion">
+        <section className="form-seccion ficha-edicion">
 
-            <h2>Procedimiento</h2>
 
-            <label>
-                Mise en place
-            </label>
+            <table className="tabla-procedimiento-edicion">
 
-            <textarea
-                name="mise_en_place"
-                value={procedimiento.mise_en_place}
-                onChange={onChange}
-                rows={4}
-            />
+                <tbody>
 
-            <label>
-                Instrucciones
-            </label>
 
-            <textarea
-                name="instrucciones"
-                value={procedimiento.instrucciones}
-                onChange={onChange}
-                rows={8}
-            />
+                    <tr>
+
+                        <th>
+                            Mise en place
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="mise_en_place"
+                                value={
+                                    procedimiento.mise_en_place || ""
+                                }
+                                onChange={onChange}
+                                rows={6}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                    <tr>
+
+                        <th>
+                            Procedimiento
+                        </th>
+
+                        <td>
+
+                            <textarea
+                                name="instrucciones"
+                                value={
+                                    procedimiento.instrucciones || ""
+                                }
+                                onChange={onChange}
+                                rows={12}
+                            />
+
+                        </td>
+
+                    </tr>
+
+
+
+                </tbody>
+
+
+            </table>
+
 
         </section>
 
     );
 
 }
+
 
 export default FormProcedimiento;
