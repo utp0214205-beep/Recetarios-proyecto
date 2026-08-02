@@ -371,6 +371,12 @@
    PÁGINA 2
 =========================================== */
 
+.ficha-pagina2{
+
+    min-height: 840px;
+    height: auto;
+    
+}
 .tabla-procedimiento{
 
     width:100%;
@@ -479,11 +485,22 @@
 
     flex-direction:column;
 
+    text-align:left;
+
+}
+.bloque-procedimiento p{
+
+    overflow-wrap: break-word;
+
+    word-break: break-word;
+
 }
 
 .bloque-mise{
 
-    height:120px;
+    height:75px;
+
+    overflow-y: auto;
 
     border-bottom:1px solid #000;
 
@@ -491,7 +508,9 @@
 
 .bloque-instrucciones{
 
-    height:120px;
+    height:155px;
+
+    
 
 }
 

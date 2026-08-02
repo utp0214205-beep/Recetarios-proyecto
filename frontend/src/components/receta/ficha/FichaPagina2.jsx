@@ -9,7 +9,7 @@ function FichaPagina2({ receta }) {
 
     return (
 
-    <section className="ficha-pagina">
+    <section className="ficha-pagina ficha-pagina2">
 
         <header className="ficha-header">
 
@@ -59,7 +59,7 @@ function FichaPagina2({ receta }) {
 
                                 </strong>
 
-                                <p>
+                                <p style={{ whiteSpace: "pre-wrap" }}>
 
                                     {receta.procedimiento?.mise_en_place}
 
@@ -75,7 +75,7 @@ function FichaPagina2({ receta }) {
 
                                 </strong>
 
-                                <p>
+                                <p style={{ whiteSpace: "pre-wrap" }}>
 
                                     {receta.procedimiento?.instrucciones}
 
@@ -399,7 +399,10 @@ function FichaPagina2({ receta }) {
 
                         <tr>
 
-                            <td className="referencias">
+                            <td
+                                className="referencias"
+                                style={{ whiteSpace: "pre-wrap" }}
+                            >
 
                                 {
 

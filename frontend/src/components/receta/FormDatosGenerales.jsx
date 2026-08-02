@@ -220,61 +220,7 @@ function FormDatosGenerales({
 
             </table>
 
-            <div className="costos-edicion">
-
-                <table className="tabla-costos-edicion">
-
-                    <tbody>
-
-                        <tr>
-
-                            <th>
-
-                                Costo de insumos de la receta
-
-                            </th>
-
-                            <td>
-
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    name="costo_total"
-                                    value={datos.costo_total}
-                                    onChange={onChange}
-                                />
-
-                            </td>
-
-                        </tr>
-
-                        <tr>
-
-                            <th>
-
-                                Costo de insumos por porción
-
-                            </th>
-
-                            <td>
-
-                                <input
-                                    type="number"
-                                    step="0.01"
-                                    name="costo_por_porcion"
-                                    value={datos.costo_por_porcion}
-                                    onChange={onChange}
-                                />
-
-                            </td>
-
-                        </tr>
-
-                    </tbody>
-
-                </table>
-
-            </div>
+            
 
         </section>
 

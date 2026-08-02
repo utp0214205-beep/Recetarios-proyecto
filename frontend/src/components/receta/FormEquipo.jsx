@@ -21,13 +21,14 @@ function FormEquipo({
 
                         <td>
 
-                            <textarea
+                           <textarea
+                                className="textarea-utensilios"
                                 name="utensilios"
                                 value={
                                     equipo.utensilios || ""
                                 }
                                 onChange={onChange}
-                                rows={5}
+                                rows={3}
                             />
 
                         </td>

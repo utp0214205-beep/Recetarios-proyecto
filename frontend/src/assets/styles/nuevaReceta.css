@@ -661,8 +661,9 @@
 
     border-collapse:collapse;
 
-}
+    table-layout:fixed;
 
+}
 
 .tabla-equipo-edicion th,
 .tabla-equipo-edicion td{
@@ -716,11 +717,13 @@
 }
 
 
-.tabla-equipo-edicion textarea{
+.tabla-equipo-edicion textarea.textarea-utensilios{
+
+    height:55px !important;
+
+    min-height:55px !important;
 
     resize:none;
-
-    line-height:1.5;
 
 }
 
@@ -887,5 +890,107 @@
 .ficha-pagina-edicion .form-seccion{
 
     margin-bottom:15px;
+
+}
+/* ===========================================
+   ALTURA PERSONALIZADA PARA UTENSILIOS
+=========================================== */
+
+.textarea-utensilios{
+
+    min-height: 55px;
+
+    height: 55px;
+
+    resize: horizontal;
+
+}
+/* ===========================================
+   EQUIPO - ALTURAS ESPECÍFICAS EN LA FICHA
+=========================================== */
+
+.tabla-equipo-edicion td[rowspan="2"]{
+
+    vertical-align: top;
+
+}
+
+.tabla-equipo-edicion td[rowspan="2"] textarea{
+
+    height: 70px;
+
+    min-height: 70px;
+
+    resize: vertical;
+
+}
+.tabla-equipo-edicion .textarea-utensilios{
+
+    height: 55px;
+
+    min-height: 55px;
+
+    resize: vertical;
+
+}
+.tabla-equipo-edicion th:nth-child(1),
+.tabla-equipo-edicion td:nth-child(1){
+
+    width:28%;
+
+}
+
+.tabla-equipo-edicion th:nth-child(2){
+
+    width:12%;
+
+}
+
+.tabla-equipo-edicion th:nth-child(3),
+.tabla-equipo-edicion td:nth-child(3){
+
+    width:15%;
+
+}
+
+.tabla-equipo-edicion th:nth-child(4),
+.tabla-equipo-edicion td:nth-child(4){
+
+    width:25%;
+
+}
+
+.tabla-equipo-edicion th:nth-child(5),
+.tabla-equipo-edicion td:nth-child(5){
+
+    width:20%;
+
+}
+.tabla-equipo-edicion textarea{
+
+    width:100%;
+
+    min-height:70px;
+
+    height:70px;
+
+    resize:vertical;
+
+    box-sizing:border-box;
+
+}
+/* ===========================================
+   TÍTULOS DE LA FICHA EN EDICIÓN
+=========================================== */
+
+.titulo-edicion{
+
+    background: #f5f5f5;
+
+    color: #000;
+
+    font-weight: bold;
+
+    text-align: center;
 
 }

@@ -53,7 +53,7 @@ function FichaEdicionPagina2({
                         <tr>
 
 
-                            <th className="titulo-verde">
+                            <th className="titulo-edicion">
 
                                 TÉCNICAS DE PREPARACIÓN Y PROCEDIMIENTOS
 
@@ -61,7 +61,7 @@ function FichaEdicionPagina2({
 
 
 
-                            <th className="titulo-verde">
+                            <th className="titulo-edicion">
 
                                 MONTAJE Y PRESENTACIÓN
 
@@ -151,7 +151,7 @@ function FichaEdicionPagina2({
 
                                             <th
                                                 colSpan="2"
-                                                className="titulo-verde"
+                                                className="titulo-edicion"
                                             >
 
                                                 TÉCNICAS CULINARIAS
@@ -485,6 +485,9 @@ function FichaEdicionPagina2({
 
 
                                 <textarea
+
+                                    className="textarea-utensilios"
+
 
                                     name="utensilios"
 
