@@ -6,8 +6,15 @@ import {
 } from "../services/recetarioService";
 
 import {
-    obtenerRecetas
+    obtenerRecetas,
+    obtenerDetalleReceta
 } from "../services/recetaService";
+
+import {
+    exportarRecetarioPDF
+} from "../utils/exportarRecetarioPDF";
+
+import FichaReceta from "../components/receta/ficha/FichaReceta";
 
 import "../assets/styles/recetario.css";
 
@@ -20,6 +27,8 @@ function RecetarioDetalle() {
     const [recetario, setRecetario] = useState(null);
 
     const [recetas, setRecetas] = useState([]);
+
+    const [recetasCompletas, setRecetasCompletas] = useState([]);
 
     const [cargando, setCargando] = useState(true);
 
@@ -39,9 +48,24 @@ function RecetarioDetalle() {
             const datosRecetas =
                 await obtenerRecetas(id);
 
+            const detalles = await Promise.all(
+
+                datosRecetas.map((receta) =>
+
+                    obtenerDetalleReceta(
+                        id,
+                        receta.id_receta
+                    )
+
+                )
+
+            );
+
             setRecetario(datosRecetario);
 
             setRecetas(datosRecetas);
+
+            setRecetasCompletas(detalles);
 
         } catch (error) {
 
@@ -63,6 +87,25 @@ function RecetarioDetalle() {
         navigate(
             `/recetarios/${id}/nueva-receta`
         );
+
+    };
+
+    const exportarPDF = async () => {
+
+        try {
+
+            await exportarRecetarioPDF(
+                recetario.nombre
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Error al exportar el recetario:",
+                error
+            );
+
+        }
 
     };
 
@@ -106,22 +149,40 @@ function RecetarioDetalle() {
 
                 </h1>
 
-                <p>
+                <p className="contador-recetas">
 
-                    Gestiona las recetas pertenecientes a este recetario.
+                    {recetas.length}
+
+                    {recetas.length === 1
+                        ? " receta registrada"
+                        : " recetas registradas"}
 
                 </p>
 
-                <button
-                    className="boton-nueva-receta"
-                    onClick={nuevaReceta}
-                >
+                <div className="acciones-recetario">
 
-                    + Nueva receta
+                    <button
+                        className="boton-nueva-receta"
+                        onClick={nuevaReceta}
+                    >
 
-                </button>
+                        + Nueva receta
+
+                    </button>
+
+                    <button
+                        className="boton-exportar-pdf"
+                        onClick={exportarPDF}
+                    >
+
+                        📄 Exportar recetario PDF
+
+                    </button>
+
+                </div>
 
             </section>
+            <hr className="separador-recetario" />
 
             <section className="lista-recetas">
 
@@ -152,11 +213,17 @@ function RecetarioDetalle() {
 
                                 <h3>
 
-                                    {receta.nombre_platillo}
+                                    🍽 {receta.nombre_platillo}
 
                                 </h3>
 
-                                <p>
+                                <span className="etiqueta-clasificacion">
+
+                                    Clasificación:
+
+                                </span>
+
+                                <p className="valor-clasificacion">
 
                                     {receta.clasificacion || "Sin clasificación"}
 
@@ -201,6 +268,35 @@ function RecetarioDetalle() {
                 }
 
             </section>
+
+            {/* ===========================================
+                FICHAS OCULTAS PARA EXPORTACIÓN PDF
+            ============================================ */}
+
+            <div
+                id="contenedor-exportacion"
+                style={{
+                    position: "absolute",
+                    left: "-10000px",
+                    top: 0,
+                    background: "#ffffff"
+                }}
+            >
+
+                {
+
+                    recetasCompletas.map((receta) => (
+
+                        <FichaReceta
+                            key={receta.id_receta}
+                            receta={receta}
+                        />
+
+                    ))
+
+                }
+
+            </div>
 
         </div>
 

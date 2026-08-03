@@ -1,0 +1,262 @@
+/* ===========================================
+   PERFIL
+=========================================== */
+
+.perfil {
+
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 90px 30px 40px;
+
+}
+
+
+/* ===========================================
+   CABECERA
+=========================================== */
+
+.perfil-header {
+
+    background: linear-gradient(135deg, #1d3557, #2f5d8c);
+
+    color: white;
+
+    border-radius: 16px;
+
+    padding: 30px;
+
+    margin-bottom: 30px;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,.12);
+
+}
+
+.perfil-header h1 {
+
+    margin: 0;
+
+    font-size: 32px;
+
+    font-weight: 700;
+
+}
+
+.perfil-header p {
+
+    margin-top: 10px;
+
+    opacity: .95;
+
+    font-size: 16px;
+
+}
+
+
+/* ===========================================
+   CONTENEDOR PRINCIPAL
+=========================================== */
+
+.perfil-grid {
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr;
+
+    gap: 25px;
+
+}
+
+
+/* ===========================================
+   TARJETAS
+=========================================== */
+
+.perfil-card {
+
+    background: white;
+
+    border-radius: 16px;
+
+    padding: 25px;
+
+    box-shadow: 0 4px 15px rgba(0,0,0,.08);
+
+}
+
+.perfil-card h2 {
+
+    margin-top: 0;
+
+    margin-bottom: 20px;
+
+    color: #1d3557;
+
+    font-size: 22px;
+
+}
+
+
+/* ===========================================
+   DATOS
+=========================================== */
+
+.perfil-datos {
+
+    display: grid;
+
+    gap: 18px;
+
+}
+
+.perfil-item {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid #ececec;
+
+    padding-bottom: 12px;
+
+}
+
+.perfil-item:last-child {
+
+    border-bottom: none;
+
+}
+
+.perfil-label {
+
+    color: #666;
+
+    font-weight: 600;
+
+}
+
+.perfil-valor {
+
+    color: #1d3557;
+
+    font-weight: 700;
+
+    text-align: right;
+
+}
+
+
+/* ===========================================
+   ESTADÍSTICAS
+=========================================== */
+
+.perfil-estadisticas {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+}
+
+.stat-perfil {
+
+    background: #f8f9fb;
+
+    border-left: 6px solid #1d3557;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+}
+
+.stat-perfil h3 {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #666;
+
+    font-weight: 600;
+
+}
+
+.stat-perfil span {
+
+    display: block;
+
+    margin-top: 8px;
+
+    font-size: 34px;
+
+    font-weight: bold;
+
+    color: #1d3557;
+
+}
+
+
+/* ===========================================
+   MENSAJE
+=========================================== */
+
+.perfil-info {
+
+    margin-top: 25px;
+
+    padding: 18px;
+
+    background: #eef5fb;
+
+    border-left: 5px solid #1d3557;
+
+    border-radius: 10px;
+
+    color: #444;
+
+    line-height: 1.6;
+
+}
+
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media (max-width: 850px) {
+
+    .perfil {
+
+        padding: 80px 15px 30px;
+
+    }
+
+    .perfil-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .perfil-item {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+
+    }
+
+    .perfil-valor {
+
+        text-align: left;
+
+    }
+
+}
