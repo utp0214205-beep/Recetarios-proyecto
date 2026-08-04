@@ -6,6 +6,10 @@ import { obtenerDetalleReceta } from "../services/recetaService";
 import "../assets/styles/detalleReceta.css";
 import "../assets/styles/fichaReceta.css";
 
+import {
+    alertaError
+} from "../utils/alertas";
+
 import FichaReceta from "../components/receta/ficha/FichaReceta";
 import DetalleDatosGenerales from "../components/receta/detalle/DetalleDatosGenerales";
 
@@ -39,6 +43,10 @@ function DetalleReceta() {
         } catch (error) {
 
             console.error(error);
+
+            alertaError(
+                "No fue posible cargar la receta."
+            );
 
         } finally {
 

@@ -55,7 +55,8 @@ function FormFotografias({
     };
 
 
-
+    console.log("FOTOS DEL FORM");
+    console.log(listaFotografias);
     return (
 
         <section className="form-seccion ficha-edicion">
@@ -111,18 +112,17 @@ function FormFotografias({
                                                 >
 
 
-                                                    <img
+                                                    console.log("FOTO COMPLETA", foto);
+                                                    console.log("PREVIEW", foto.preview);
+                                                    console.log("IMAGEN", foto.imagen);
 
+                                                    <img
                                                         src={
                                                             foto.preview
                                                                 ? foto.preview
                                                                 : `data:image/jpeg;base64,${foto.imagen}`
                                                         }
-
-                                                        alt={
-                                                            `Foto ${index+1}`
-                                                        }
-
+                                                        alt={`Foto ${index + 1}`}
                                                     />
 
 

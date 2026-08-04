@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+import { alertaAdvertencia } from "../../utils/alertas";
+
 function FormRecetario({
 
     onGuardar,
@@ -12,11 +14,9 @@ function FormRecetario({
 
     const [nombre, setNombre] = useState(
 
-    recetario?.nombre || ""
+        recetario?.nombre || ""
 
     );
-
-    
 
     const enviar = (e) => {
 
@@ -24,7 +24,9 @@ function FormRecetario({
 
         if (!nombre.trim()) {
 
-            alert("Ingresa el nombre del recetario.");
+            alertaAdvertencia(
+                "Ingresa el nombre del recetario."
+            );
 
             return;
 
@@ -36,8 +38,6 @@ function FormRecetario({
 
         setNombre("");
 
-        
-
     };
 
     return (
@@ -48,15 +48,15 @@ function FormRecetario({
 
                 <h2>
 
-                {
+                    {
 
-                    recetario
+                        recetario
 
-                        ? "✏ Editar Recetario"
+                            ? "✏ Editar Recetario"
 
-                        : "📚 Nuevo Recetario"
+                            : "📚 Nuevo Recetario"
 
-                }
+                    }
 
                 </h2>
 
@@ -76,8 +76,6 @@ function FormRecetario({
                         onChange={(e) => setNombre(e.target.value)}
                         autoFocus
                     />
-
-                    
 
                     <div className="modal-buttons">
 

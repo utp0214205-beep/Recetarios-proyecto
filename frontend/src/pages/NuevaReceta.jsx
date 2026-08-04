@@ -7,6 +7,12 @@ import {
     actualizarReceta
 } from "../services/recetaService";
 
+import {
+    alertaError,
+    alertaExito,
+    alertaAdvertencia
+} from "../utils/alertas";
+
 import "../assets/styles/nuevaReceta.css";
 import "../assets/styles/fichaReceta.css";
 
@@ -14,6 +20,7 @@ import FichaEdicionPagina1
 from "../components/receta/ficha-edicion/FichaEdicionPagina1";
 import FichaEdicionPagina2 
 from "../components/receta/ficha-edicion/FichaEdicionPagina2";
+
 
 
 function NuevaReceta() {
@@ -91,7 +98,17 @@ function NuevaReceta() {
                 id,
                 idReceta
             );
+            console.log("RECETA COMPLETA");
+            console.log(receta);
 
+            console.log("FOTOGRAFIAS");
+            console.log(receta.fotografias);
+
+            console.log("PRIMERA FOTO");
+            console.log(receta.fotografias?.[0]);
+
+            console.log(receta.fotografias[0]);
+            console.log(receta.fotografias[0].imagen);
 
             setDatosReceta({
 
@@ -132,7 +149,7 @@ function NuevaReceta() {
                         unidades_medicion: ""
                     },
 
-
+                
                 fotografias:
 
                 receta.fotografias?.length
@@ -161,7 +178,9 @@ function NuevaReceta() {
 
             console.error(error);
 
-            alert("No fue posible cargar la receta.");
+            alertaError(
+                "No fue posible cargar la receta."
+            );
 
         } finally {
 
@@ -259,6 +278,16 @@ function NuevaReceta() {
 
         e.preventDefault();
 
+        if (!datosReceta.nombre_platillo.trim()) {
+
+            alertaAdvertencia(
+                "Ingresa el nombre de la receta."
+            );
+
+            return;
+
+        }
+
         console.log(
             "FOTOGRAFIAS ANTES DE GUARDAR:",
             datosReceta.fotografias
@@ -274,7 +303,9 @@ function NuevaReceta() {
                     datosReceta
                 );
 
-                alert("Receta actualizada correctamente.");
+                alertaExito(
+                    "Receta actualizada correctamente."
+                );
 
             } else {
 
@@ -283,7 +314,9 @@ function NuevaReceta() {
                     datosReceta
                 );
 
-                alert("Receta creada correctamente.");
+                alertaExito(
+                    "Receta creada correctamente."
+                );
 
             }
 
@@ -291,14 +324,27 @@ function NuevaReceta() {
 
         } catch (error) {
 
-            console.error("ERROR COMPLETO:", error);
+            console.error(
+                "ERROR COMPLETO:",
+                error
+            );
 
-            console.log("RESPUESTA:", error.response);
+            console.log(
+                "RESPUESTA:",
+                error.response
+            );
 
-            console.log("DATA:", error.response?.data);
+            console.log(
+                "DATA:",
+                error.response?.data
+            );
 
-            alert(
-                JSON.stringify(error.response?.data)
+            alertaError(
+
+                error.response?.data?.message ??
+
+                "No fue posible guardar la receta."
+
             );
 
         }

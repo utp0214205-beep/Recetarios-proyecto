@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Swal from "sweetalert2";
+
+import {
+    alertaAdvertencia,
+    alertaError,
+    alertaExito
+} from "../../utils/alertas";
 
 import { registrarAlumno } from "../../services/alumno.service";
 
@@ -50,22 +55,18 @@ function RegistroForm() {
             !contrasena ||
             !confirmarContrasena
         ) {
-            Swal.fire({
-                icon: "warning",
-                title: "Campos incompletos",
-                text: "Completa todos los campos."
-            });
+            alertaAdvertencia(
+            "Completa todos los campos."
+        );
 
             return;
         }
 
         if (contrasena !== confirmarContrasena) {
 
-            Swal.fire({
-                icon: "warning",
-                title: "Contraseñas diferentes",
-                text: "Las contraseñas no coinciden."
-            });
+            alertaAdvertencia(
+                "Las contraseñas no coinciden."
+            );
 
             return;
         }
@@ -85,25 +86,21 @@ function RegistroForm() {
 
             });
 
-            Swal.fire({
-                icon: "success",
-                title: "Registro exitoso",
-                text: "Ahora puedes iniciar sesión.",
-                timer: 1500,
-                showConfirmButton: false
-            });
+            await alertaExito(
+                "Ahora puedes iniciar sesión."
+            );
 
             navigate("/login");
 
         } catch (error) {
 
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text:
-                    error.response?.data?.message ||
-                    error.message
-            });
+            alertaError(
+
+                error.response?.data?.message ||
+
+                error.message
+
+            );
 
         } finally {
 

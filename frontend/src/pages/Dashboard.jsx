@@ -4,8 +4,10 @@ import { useAuth } from "../hooks/useAuth";
 
 import { obtenerRecetarios } from "../services/recetarioService";
 
-import ListaRecetarios from "../components/recetario/ListaRecetarios";
+import { obtenerRecetas } from "../services/recetaService";
 
+import ListaRecetarios from "../components/recetario/ListaRecetarios";
+import { alertaError } from "../utils/alertas";
 import "../assets/styles/dashboard.css";
 
 function Dashboard() {
@@ -15,6 +17,10 @@ function Dashboard() {
     const navigate = useNavigate();
 
     const [misRecetarios, setMisRecetarios] = useState([]);
+
+    const [totalRecetas, setTotalRecetas] = useState(0);
+
+    const [totalPDF, setTotalPDF] = useState(0);
 
     const [cargando, setCargando] = useState(true);
 
@@ -38,11 +44,29 @@ function Dashboard() {
 
             setMisRecetarios(data);
 
+            let contadorRecetas = 0;
+
+            for (const recetario of data) {
+
+                const recetas = await obtenerRecetas(
+                    recetario.id_recetario
+                );
+
+                contadorRecetas += recetas.length;
+
+            }
+
+            setTotalRecetas(contadorRecetas);
+
         } catch (error) {
 
             console.error(
                 "Error cargando recetarios:",
                 error
+            );
+
+            alertaError(
+                "No fue posible cargar la información del Dashboard."
             );
 
         } finally {
@@ -111,7 +135,15 @@ function Dashboard() {
 
                     <h2>
 
-                        0
+                        {
+
+                            cargando
+
+                                ? "..."
+
+                                : totalRecetas
+
+                        }
 
                     </h2>
 
@@ -123,21 +155,7 @@ function Dashboard() {
 
                 </div>
 
-                <div className="stat-card">
-
-                    <h2>
-
-                        0
-
-                    </h2>
-
-                    <p>
-
-                        PDF generados
-
-                    </p>
-
-                </div>
+                
 
             </section>
 

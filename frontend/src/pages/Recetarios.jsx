@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../hooks/useAuth";
 
 import ListaRecetarios from "../components/recetario/ListaRecetarios";
@@ -12,13 +13,17 @@ import {
     eliminarRecetario
 } from "../services/recetarioService";
 
+import {
+    alertaError,
+    alertaExito,
+    confirmarEliminar
+} from "../utils/alertas";
 
 function Recetarios() {
 
     const { alumno } = useAuth();
 
     const navigate = useNavigate();
-
 
     const [recetarios, setRecetarios] = useState([]);
 
@@ -27,8 +32,6 @@ function Recetarios() {
     const [recetarioEditando, setRecetarioEditando] = useState(null);
 
     const [cargando, setCargando] = useState(true);
-
-
 
     useEffect(() => {
 
@@ -40,8 +43,6 @@ function Recetarios() {
 
     }, [alumno]);
 
-
-
     const cargarRecetarios = async () => {
 
         try {
@@ -52,7 +53,6 @@ function Recetarios() {
 
             setRecetarios(datos);
 
-
         } catch (error) {
 
             console.error(
@@ -60,6 +60,9 @@ function Recetarios() {
                 error
             );
 
+            alertaError(
+                "No fue posible cargar los recetarios."
+            );
 
         } finally {
 
@@ -68,8 +71,6 @@ function Recetarios() {
         }
 
     };
-
-
 
     const guardarRecetario = async (datos) => {
 
@@ -85,6 +86,10 @@ function Recetarios() {
 
                 );
 
+                alertaExito(
+                    "Los cambios se guardaron correctamente."
+                );
+
             } else {
 
                 await crearRecetario({
@@ -94,6 +99,10 @@ function Recetarios() {
                     id_alumno: alumno.id_alumno
 
                 });
+
+                alertaExito(
+                    "El recetario se creó correctamente."
+                );
 
             }
 
@@ -107,11 +116,13 @@ function Recetarios() {
 
             console.error(error);
 
+            alertaError(
+                "No fue posible guardar el recetario."
+            );
+
         }
 
     };
-
-
 
     const abrirRecetario = (recetario) => {
 
@@ -121,8 +132,6 @@ function Recetarios() {
 
     };
 
-
-
     const editarRecetario = (recetario) => {
 
         setRecetarioEditando(recetario);
@@ -131,27 +140,21 @@ function Recetarios() {
 
     };
 
-
-
     const borrarRecetario = async (id) => {
 
-        const confirmar = window.confirm(
-            "¿Deseas eliminar este recetario?"
-        );
+        const resultado = await confirmarEliminar();
 
-
-        if (!confirmar) return;
-
-
+        if (!resultado.isConfirmed) return;
 
         try {
 
             await eliminarRecetario(id);
 
-
             await cargarRecetarios();
 
-
+            alertaExito(
+                "El recetario fue eliminado correctamente."
+            );
 
         } catch (error) {
 
@@ -160,11 +163,13 @@ function Recetarios() {
                 error
             );
 
+            alertaError(
+                "No fue posible eliminar el recetario."
+            );
+
         }
 
     };
-
-
 
     if (cargando) {
 
@@ -180,23 +185,17 @@ function Recetarios() {
 
     }
 
-
-
     return (
 
         <div className="recetarios-page">
 
-
             <div className="recetarios-header">
-
 
                 <h1>
 
                     Mis Recetarios
 
                 </h1>
-
-
 
                 <button
 
@@ -212,12 +211,7 @@ function Recetarios() {
 
                 </button>
 
-
             </div>
-
-
-
-
 
             <ListaRecetarios
 
@@ -230,10 +224,6 @@ function Recetarios() {
                 onEliminar={borrarRecetario}
 
             />
-
-
-
-
 
             {
 
@@ -259,13 +249,10 @@ function Recetarios() {
 
             }
 
-
-
         </div>
 
     );
 
 }
-
 
 export default Recetarios;

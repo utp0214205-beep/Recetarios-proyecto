@@ -5,7 +5,7 @@ import FichaReceta from "./FichaReceta";
 import {
     obtenerDetalleReceta
 } from "../../../services/recetaService";
-
+import { alertaError } from "../../../utils/alertas";
 function ExportadorPDF({
 
     idRecetario,
@@ -72,6 +72,10 @@ function ExportadorPDF({
 
                 error
 
+            );
+
+            alertaError(
+                "No fue posible preparar las recetas para la exportación."
             );
 
         }

@@ -5,7 +5,7 @@ import { useAuth } from "../hooks/useAuth";
 import {
     obtenerRecetarios
 } from "../services/recetarioService";
-
+import { alertaError } from "../utils/alertas";
 import {
     obtenerRecetas
 } from "../services/recetaService";
@@ -67,11 +67,12 @@ function Perfil() {
         } catch (error) {
 
             console.error(
-
                 "Error cargando el perfil:",
-
                 error
+            );
 
+            alertaError(
+                "No fue posible cargar la información del perfil."
             );
 
         } finally {

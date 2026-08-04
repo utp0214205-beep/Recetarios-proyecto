@@ -1,6 +1,11 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+
+import {
+    alertaAdvertencia,
+    alertaError,
+    alertaExito
+} from "../../utils/alertas";
 
 import { login } from "../../services/alumno.service";
 import { AuthContext } from "../../context/AuthContext";
@@ -18,11 +23,9 @@ function LoginForm() {
     e.preventDefault();
 
     if (!correo || !contrasena) {
-      Swal.fire({
-        icon: "warning",
-        title: "Campos incompletos",
-        text: "Completa todos los campos.",
-      });
+      alertaAdvertencia(
+          "Completa todos los campos."
+      );
       return;
     }
 
@@ -38,13 +41,9 @@ function LoginForm() {
 
         console.log("LOCAL STORAGE:", localStorage.getItem("alumno"));
 
-      Swal.fire({
-        icon: "success",
-        title: "Bienvenido",
-        text: `Hola ${respuesta.alumno.nombre}`,
-        timer: 1200,
-        showConfirmButton: false,
-      });
+      await alertaExito(
+          `¡Bienvenido ${respuesta.alumno.nombre}!`
+      );
 
       navigate("/dashboard");
 
@@ -56,13 +55,13 @@ function LoginForm() {
 
         console.log(error.message);
 
-        Swal.fire({
-            icon: "error",
-            title: "Error",
-            text:
+        alertaError(
+
             error.response?.data?.message ||
-            error.message,
-        });
+
+            error.message
+
+        );
 
         } finally {
 

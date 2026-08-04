@@ -15,7 +15,10 @@ import {
 } from "../utils/exportarRecetarioPDF";
 
 import FichaReceta from "../components/receta/ficha/FichaReceta";
-
+import {
+    alertaError,
+    alertaExito
+} from "../utils/alertas";
 import "../assets/styles/recetario.css";
 
 function RecetarioDetalle() {
@@ -74,6 +77,10 @@ function RecetarioDetalle() {
                 error
             );
 
+            alertaError(
+                "No fue posible cargar el recetario."
+            );
+
         } finally {
 
             setCargando(false);
@@ -98,11 +105,19 @@ function RecetarioDetalle() {
                 recetario.nombre
             );
 
+            alertaExito(
+                "El recetario se exportó correctamente."
+            );
+
         } catch (error) {
 
             console.error(
                 "Error al exportar el recetario:",
                 error
+            );
+
+            alertaError(
+                "No fue posible exportar el recetario."
             );
 
         }
@@ -111,32 +126,15 @@ function RecetarioDetalle() {
 
     if (cargando) {
 
-        return (
-
-            <h2>
-
-                Cargando recetario...
-
-            </h2>
-
-        );
+        return <h2>Cargando recetario...</h2>;
 
     }
 
     if (!recetario) {
 
-        return (
-
-            <h2>
-
-                El recetario no existe.
-
-            </h2>
-
-        );
+        return <h2>No se encontró el recetario.</h2>;
 
     }
-
     return (
 
         <div className="recetario-detalle">
